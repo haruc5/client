@@ -1,0 +1,32 @@
+.header_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 0px 20px;
+}
+
+.header_nav {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  padding: 0;
+}
+
+.header_nav li {
+  list-style: none;
+  text-align: center;
+}
+
+.header_nav li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.header_nav li a img {
+  width: 26px;
+}
+
+.header_nav li a p {
+  margin: 0;
+}
