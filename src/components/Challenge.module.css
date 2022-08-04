@@ -10,6 +10,9 @@
   margin-right: 0;
 }
 .chellenge_thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 290px;
   height: 160px;
   overflow: hidden;
