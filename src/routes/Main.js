@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Challenge from "../components/Challenge";
 import HotChallenge from "../components/HotChallenge";
 import styles from "../components/Main.module.css";
+import gray from "../assets/images/icons/gray.svg";
 
 const challengeData = [
   {
@@ -92,6 +93,16 @@ function Main() {
         </div>
       </div>
       <div>
+        <div className={styles.profile}>
+          <p>
+            로그인해서
+            <br />
+            나에게 맞는 챌린지를
+            <br />
+            찾아보세요.
+          </p>
+          <img src={gray} alt="" />
+        </div>
         <Link to={`/create`}>
           <button className={styles.create_btn}>챌린지 등록하기+</button>
         </Link>
