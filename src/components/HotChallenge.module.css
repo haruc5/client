@@ -1,0 +1,33 @@
+.hot_chellenge_box {
+  width: 270px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.hot_chellenge_thumbnails {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.hot_chellenge_thumbnails img {
+  height: 100%;
+  transition: all 0.5s;
+}
+
+.hot_chellenge_box_info h3 {
+  margin: 0 0 10px 0;
+}
+
+.hot_chellenge_box_info p {
+  margin: 0;
+}
+
+.hot_chellenge_box:hover .hot_chellenge_thumbnails img {
+  transform: scale(1.2);
+}
