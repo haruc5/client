@@ -1,0 +1,22 @@
+.main_challenge {
+  width: 900px;
+  border: 1px solid #eee;
+}
+.main_title {
+  font-size: 40px;
+  color: #00d994;
+  text-align: center;
+}
+.main_title span {
+  color: #333;
+}
+.main_chellenge_thumbnails {
+  display: flex;
+}
+.main_chellenge_thumbnails li {
+  width: 280px;
+  list-style: none;
+}
+.main_chellenge_thumbnails li img {
+  width: 100%;
+}
