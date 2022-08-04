@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Challenge from "../components/Challenge";
+import styles from "../components/Main.module.css";
 
 const challengeData = [
   {
@@ -60,20 +61,24 @@ function Main() {
 
   return (
     <div>
-      <div>
-        <h2>
+      <div className={styles.main_challenge}>
+        <h2 className={styles.main_title}>
           <span>하루조각</span> 건강챌린지
         </h2>
-        <ul>
-          {challengeData.map((challenge, index) => (
-            <Challenge
-              key={index}
-              title={challenge.challengeTitle}
-              img={challenge.challengeImgUrl}
-              start={challenge.challengeStartDate}
-              end={challenge.challengeEndDate}
-            />
-          ))}
+        <ul className={styles.Challenge_list}>
+          {challengeData.map((challenge, index) => {
+            if (index < 3) {
+              return (
+                <Challenge
+                  key={index}
+                  title={challenge.challengeTitle}
+                  img={challenge.challengeImgUrl}
+                  start={challenge.challengeStartDate}
+                  end={challenge.challengeEndDate}
+                />
+              );
+            }
+          })}
         </ul>
       </div>
     </div>
