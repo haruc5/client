@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Challenge from "../components/Challenge";
+import HotChallenge from "../components/HotChallenge";
 import styles from "../components/Main.module.css";
 
 const challengeData = [
@@ -60,26 +61,48 @@ function Main() {
   // }, []);
 
   return (
-    <div>
-      <div className={styles.main_challenge}>
-        <h2 className={styles.main_title}>
-          <span>하루조각</span> 건강챌린지
-        </h2>
-        <ul className={styles.Challenge_list}>
-          {challengeData.map((challenge, index) => {
-            if (index < 3) {
-              return (
-                <Challenge
-                  key={index}
-                  title={challenge.challengeTitle}
-                  img={challenge.challengeImgUrl}
-                  start={challenge.challengeStartDate}
-                  end={challenge.challengeEndDate}
-                />
-              );
-            }
-          })}
-        </ul>
+    <div className={styles.container}>
+      <div>
+        <div className={styles.main_challenge}>
+          <h2 className={styles.main_title}>
+            <span>하루조각</span> 건강챌린지
+          </h2>
+          <ul className={styles.challenge_list}>
+            {challengeData.map((challenge, index) => {
+              if (index < 3) {
+                return (
+                  <Challenge
+                    key={index}
+                    title={challenge.challengeTitle}
+                    img={challenge.challengeImgUrl}
+                    start={challenge.challengeStartDate}
+                    end={challenge.challengeEndDate}
+                  />
+                );
+              }
+            })}
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div className={styles.hot_challenge}>
+          <h2 className={styles.main_title}>
+            <span>Hot</span> 챌린지
+          </h2>
+          <ul className={styles.hot_challenge_list}>
+            {challengeData.map((challenge, index) => {
+              if (index < 4) {
+                return (
+                  <HotChallenge
+                    key={index}
+                    title={challenge.challengeTitle}
+                    img={challenge.challengeImgUrl}
+                  />
+                );
+              }
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
