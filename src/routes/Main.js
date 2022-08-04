@@ -64,6 +64,12 @@ function Main() {
   return (
     <div className={styles.container}>
       <div>
+        <div className={styles.banner}>
+          <img
+            src="https://www.stopbook.com/file/event/list_banner_02.jpg"
+            alt=""
+          />
+        </div>
         <div className={styles.main_challenge}>
           <h2 className={styles.main_title}>
             <span>하루조각</span> 건강챌린지
