@@ -7,6 +7,23 @@
   padding: 80px 0;
 }
 
+.create_btn {
+  width: 310px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #00d994;
+  color: white;
+  font-weight: 600;
+  transition: all 0.5s;
+  margin-bottom: 20px;
+}
+
+.create_btn:hover {
+  background-color: #00ba82;
+}
+
 .main_challenge {
   width: 950px;
   border: 1px solid #ddd;

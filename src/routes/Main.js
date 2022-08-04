@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Challenge from "../components/Challenge";
 import HotChallenge from "../components/HotChallenge";
 import styles from "../components/Main.module.css";
@@ -85,6 +86,9 @@ function Main() {
         </div>
       </div>
       <div>
+        <Link to={`/create`}>
+          <button className={styles.create_btn}>챌린지 등록하기+</button>
+        </Link>
         <div className={styles.hot_challenge}>
           <h2 className={styles.main_title}>
             <span>Hot</span> 챌린지
