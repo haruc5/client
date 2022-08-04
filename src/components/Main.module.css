@@ -6,6 +6,24 @@
   padding: 80px 0;
 }
 
+.profile {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile p {
+  text-align: left;
+  font-size: 20px;
+  margin: 0 0 20px 0;
+}
+
+.profile img {
+  width: 100px;
+}
+
 .banner {
   width: 950px;
   border-radius: 10px;
