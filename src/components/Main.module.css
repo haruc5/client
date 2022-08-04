@@ -1,0 +1,20 @@
+.main_challenge {
+  width: 950px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+}
+.main_title {
+  text-align: center;
+  font-size: 35px;
+  color: #00d994;
+  margin: 0 0 20px 0;
+}
+.main_title span {
+  color: #333;
+}
+.Challenge_list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
