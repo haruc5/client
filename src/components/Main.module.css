@@ -44,6 +44,7 @@
   font-weight: 600;
   transition: all 0.5s;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .create_btn:hover {
