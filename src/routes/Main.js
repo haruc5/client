@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Challenge from "../components/Challenge";
 import HotChallenge from "../components/HotChallenge";
@@ -51,6 +50,18 @@ const challengeData = [
 ];
 
 function Main() {
+  let challengeDataLimit3 = [];
+
+  for (let i = 0; i < 3; i++) {
+    challengeDataLimit3.push(challengeData[i]);
+  }
+
+  let challengeDataLimit4 = [];
+
+  for (let i = 0; i < 4; i++) {
+    challengeDataLimit4.push(challengeData[i]);
+  }
+
   // const [challenges, setChallenges] = useState([]);
   // const getChallenge = async () => {
   //   const Response = await fetch(challengeData);
@@ -76,18 +87,16 @@ function Main() {
             <span>하루조각</span> 건강챌린지
           </h2>
           <ul className={styles.challenge_list}>
-            {challengeData.map((challenge, index) => {
-              if (index < 3) {
-                return (
-                  <Challenge
-                    key={index}
-                    title={challenge.challengeTitle}
-                    img={challenge.challengeImgUrl}
-                    start={challenge.challengeStartDate}
-                    end={challenge.challengeEndDate}
-                  />
-                );
-              }
+            {challengeDataLimit3.map((challenge, index) => {
+              return (
+                <Challenge
+                  key={index}
+                  title={challenge.challengeTitle}
+                  img={challenge.challengeImgUrl}
+                  start={challenge.challengeStartDate}
+                  end={challenge.challengeEndDate}
+                />
+              );
             })}
           </ul>
         </div>
@@ -111,16 +120,14 @@ function Main() {
             <span>Hot</span> 챌린지
           </h2>
           <ul className={styles.hot_challenge_list}>
-            {challengeData.map((challenge, index) => {
-              if (index < 4) {
-                return (
-                  <HotChallenge
-                    key={index}
-                    title={challenge.challengeTitle}
-                    img={challenge.challengeImgUrl}
-                  />
-                );
-              }
+            {challengeDataLimit4.map((challenge, index) => {
+              return (
+                <HotChallenge
+                  key={index}
+                  title={challenge.challengeTitle}
+                  img={challenge.challengeImgUrl}
+                />
+              );
             })}
           </ul>
         </div>

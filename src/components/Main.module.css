@@ -1,9 +1,6 @@
 .container {
-  width: 1280px;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
-  padding: 80px 0;
 }
 
 .profile {
