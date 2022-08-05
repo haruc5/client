@@ -1,0 +1,100 @@
+/* 챌린지 개설 */
+.title{
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+/* 소제목 css */
+form label{
+  display: block;
+  color: #aaa;
+  margin-bottom: 5px;
+}
+
+/* form 전체 css */
+.create_box{
+  display: flex;
+}
+.create_box>div{
+  width: 600px;
+  /* border: 1px solid #ddd; */
+}
+.create_box>div>div{
+  margin-bottom: 40px;
+}
+.create_left{
+  margin-right: 80px;
+}
+
+/* input 중복 css */
+.create_css{
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  background: #eee;
+  border-radius: 5px;
+  padding: 0 10px;
+  outline: none;
+}
+
+/* 카테고리, 모집 방식 css */
+.select_box div{
+  background: #eee;
+  border-radius: 5px;
+}
+.create_select{
+  appearance: none;
+  background: url("../assets/images/icons/down.svg") no-repeat right 15px center;
+  background-size: 15px;
+}
+
+/* 대표 이미지 css */
+.create_img input{
+  line-height: 44px;
+}
+
+/* 주말제외 css */
+.holiday{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.holiday label{
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* 인증기간 css */
+.create_date input{
+  width: 48%;
+}
+.create_date div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 챌린지 설명 css */
+.create_bottom textarea{
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+}
+
+/* 챌린지 설명 css */
+.create_btn {
+  width: 280px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #aaa;
+  color: white;
+  font-weight: 600;
+  transition: all 0.5s;
+  margin: 40px 0 0 1000px;
+}
+
+.create_btn:hover {
+  background-color: #00d994;
+}
