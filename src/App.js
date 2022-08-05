@@ -9,10 +9,12 @@ function App() {
     <div>
       <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/create" element={<Create />} />
-        </Routes>
+        <div style={{ padding: "80px 0", width: "1280px", margin: "0 auto" }}>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/create" element={<Create />} />
+          </Routes>
+        </div>
         <Footer />
       </Router>
     </div>

@@ -1,4 +1,4 @@
-.Footer_box{
+.footer_box {
   width: 100%;
   border-top: 1px solid #eee;
   padding: 20px;
@@ -6,12 +6,12 @@
   justify-content: space-between;
   align-items: center;
 }
-.Footer_left img{
+.footer_left img {
   width: 15vw;
 }
-.Footer_left p{
+.footer_left p {
   font-size: 1.3em;
 }
-.Footer_copy{
+.footer_copy {
   font-size: 1em;
 }
