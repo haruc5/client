@@ -1,6 +1,19 @@
+import React, { useState } from "react";
+import axios from "axios";
 import styles from "../components/Create.module.css";
 
 function Create() {
+  const [challengeInfo, setChallengeInfo] = useState({
+    challengeTitle: "",
+    challengeCategory: "",
+    challengeImg: "",
+    challengeHoliday: "",
+    challengeStart: "",
+    challengeEnd: "",
+    challengeAuthority: "",
+    challengeContent: "",
+  });
+
   return (
     <div>
       <h1 className={styles.title}>챌린지 개설</h1>
@@ -13,6 +26,12 @@ function Create() {
                 type="text"
                 placeholder="챌린지의 제목을 입력해주세요."
                 className={styles.create_css}
+                onChange={(e) => {
+                  setChallengeInfo({
+                    ...challengeInfo,
+                    challengeTitle: e.target.value,
+                  });
+                }}
               />
             </div>
             <div className={styles.select_box}>
@@ -20,6 +39,12 @@ function Create() {
               <div>
                 <select
                   className={`${styles.create_select} ${styles.create_css}`}
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeCategory: e.target.value,
+                    });
+                  }}
                 >
                   <option value="CATEGORY">주제</option>
                   <option value="NODRINKNOSMOKE">금연/금주</option>
@@ -34,6 +59,12 @@ function Create() {
                 type="file"
                 accept="image/*"
                 className={styles.create_css}
+                onChange={(e) => {
+                  setChallengeInfo({
+                    ...challengeInfo,
+                    challengeImg: e.target.value,
+                  });
+                }}
               />
             </div>
           </div>
@@ -42,15 +73,41 @@ function Create() {
               <label>인증 기간 중 주말제외 여부</label>
               <div className={`${styles.holiday} ${styles.create_css}`}>
                 <label>주말 제외</label>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeHoliday: e.target.value,
+                    });
+                  }}
+                />
               </div>
             </div>
             <div className={styles.create_date}>
               <label>인증기간</label>
               <div>
-                <input type="date" className={styles.create_css} />
+                <input
+                  type="date"
+                  className={styles.create_css}
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeStart: e.target.value,
+                    });
+                  }}
+                />
                 <span> ~ </span>
-                <input type="date" className={styles.create_css} />
+                <input
+                  type="date"
+                  className={styles.create_css}
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeEnd: e.target.value,
+                    });
+                  }}
+                />
               </div>
             </div>
             <div className={styles.select_box}>
@@ -58,6 +115,12 @@ function Create() {
               <div>
                 <select
                   className={`${styles.create_select} ${styles.create_css}`}
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeAuthority: e.target.value,
+                    });
+                  }}
                 >
                   <option value="CATEGORY">공개여부 설정</option>
                   <option value="PUBLIC">공개</option>
@@ -72,10 +135,37 @@ function Create() {
           <textarea
             placeholder="챌린지를 설명해주세요."
             className={styles.create_css}
+            onChange={(e) => {
+              setChallengeInfo({
+                ...challengeInfo,
+                challengeContent: e.target.value,
+              });
+            }}
           />
         </div>
       </form>
-      <button className={styles.create_btn}>챌린지 개설하기</button>
+      <button
+        onClick={async () => {
+          const data = await axios({
+            url: "http://10.78.101.25:8082/api/challenge/create",
+            method: "POST",
+            data: {
+              challengeTitle,
+              challengeCategory,
+              challengeImg,
+              challengeHoliday,
+              challengeStart,
+              challengeEnd,
+              challengeAuthority,
+              challengeContent,
+            },
+          });
+          console.log(data);
+        }}
+        className={styles.create_btn}
+      >
+        챌린지 개설하기
+      </button>
     </div>
   );
 }
