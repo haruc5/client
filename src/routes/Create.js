@@ -150,14 +150,14 @@ function Create() {
             url: "http://10.78.101.25:8082/api/challenge/create",
             method: "POST",
             data: {
-              challengeTitle,
-              challengeCategory,
-              challengeImg,
-              challengeHoliday,
-              challengeStart,
-              challengeEnd,
-              challengeAuthority,
-              challengeContent,
+              challengeTitle : challengeInfo.challengeTitle,
+              challengeCategory : challengeInfo.challengeCategory,
+              challengeImg : challengeInfo.challengeImg,
+              challengeHoliday : challengeInfo.challengeHoliday,
+              challengeStart : challengeInfo.challengeStart,
+              challengeEnd : challengeInfo.challengeEnd,
+              challengeAuthority : challengeInfo.challengeAuthority,
+              challengeContent : challengeInfo.challengeContent,
             },
           });
           console.log(data);
