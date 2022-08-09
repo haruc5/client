@@ -1,3 +1,8 @@
+/* 모달 */
+.create_container {
+  position: relative;
+}
+
 /* 챌린지 개설 */
 .title {
   margin: 0;

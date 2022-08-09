@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../components/Create.module.css";
+import PostModal from "../components/PostModal";
 
 function Create() {
   const [challengeInfo, setChallengeInfo] = useState({
@@ -14,8 +15,32 @@ function Create() {
     challengeContent: "",
   });
 
+  const postCreate = async () => {
+    const data = await axios({
+      url: "http://10.78.101.25:8082/api/challenge/create",
+      method: "POST",
+      data: {
+        challengeTitle: challengeInfo.challengeTitle,
+        challengeCategory: challengeInfo.challengeCategory,
+        challengeImg: challengeInfo.challengeImg,
+        challengeHoliday: challengeInfo.challengeHoliday,
+        challengeStart: challengeInfo.challengeStart,
+        challengeEnd: challengeInfo.challengeEnd,
+        challengeAuthority: challengeInfo.challengeAuthority,
+        challengeContent: challengeInfo.challengeContent,
+      },
+    });
+    console.log(data);
+  };
+
+  const [modal, setModal] = useState(false);
+
+  function showModal() {
+    setModal(true);
+  }
+
   return (
-    <div>
+    <div className={styles.create_container}>
       <h1 className={styles.title}>챌린지 개설</h1>
       <form>
         <div className={styles.create_box}>
@@ -145,27 +170,15 @@ function Create() {
         </div>
       </form>
       <button
-        onClick={async () => {
-          const data = await axios({
-            url: "http://10.78.101.25:8082/api/challenge/create",
-            method: "POST",
-            data: {
-              challengeTitle : challengeInfo.challengeTitle,
-              challengeCategory : challengeInfo.challengeCategory,
-              challengeImg : challengeInfo.challengeImg,
-              challengeHoliday : challengeInfo.challengeHoliday,
-              challengeStart : challengeInfo.challengeStart,
-              challengeEnd : challengeInfo.challengeEnd,
-              challengeAuthority : challengeInfo.challengeAuthority,
-              challengeContent : challengeInfo.challengeContent,
-            },
-          });
-          console.log(data);
+        onClick={() => {
+          showModal();
+          postCreate();
         }}
         className={styles.create_btn}
       >
         챌린지 개설하기
       </button>
+      {modal === true ? <PostModal /> : null}
     </div>
   );
 }
