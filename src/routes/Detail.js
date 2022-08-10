@@ -1,6 +1,5 @@
 import styles from "../components/Detail.module.css";
 import { Link } from "react-router-dom";
-import challengeImg from "../assets/images/category_img/exercise_1.jpg";
 import ChallengeInfo from "../components/ChallengeInfo";
 import ChallengeShot from "../components/ChallengeShot";
 import { useState } from "react";
@@ -50,9 +49,11 @@ function Detail(){
           </div>
           
         </div>
-        <div className={styles.challenge_tab}>
-          <h3 onClick={showChallengeInfo}>챌린지 소개</h3>
-          <h3 onClick={showChallengeShot}>인증목록</h3>
+        <div >
+          <ul className={styles.challenge_tab}>
+            <li onClick={showChallengeInfo} className={`${challengeInfo ? styles.active : ''}`}>챌린지 소개</li>
+            <li onClick={showChallengeShot} className={`${challengeShot ? styles.active : ''}`}>인증목록</li>
+          </ul>
           {challengeInfo ? <ChallengeInfo
                     title={challengeData[0].challengeTitle}
                     start={challengeData[0].challengeStartDate}
