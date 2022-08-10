@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../components/Create.module.css";
 import PostModal from "../components/PostModal";
+import categoryImg1 from "../assets/images/category_img/exercise_1.jpg";
+import categoryImg2 from "../assets/images/category_img/exercise_2.jpg";
+import categoryImg3 from "../assets/images/category_img/livinghabits_1.jpg";
+import categoryImg4 from "../assets/images/category_img/livinghabits_2.jpg";
+import categoryImg5 from "../assets/images/category_img/livinghabits_3.jpg";
+import categoryImg6 from "../assets/images/category_img/livinghabits_4.jpg";
+import categoryImg7 from "../assets/images/category_img/livinghabits_5.jpg";
+import categoryImg8 from "../assets/images/category_img/nodrink_1.jpg";
+import categoryImg9 from "../assets/images/category_img/nosmoke_1.jpg";
 
 function Create() {
   const [challengeInfo, setChallengeInfo] = useState({
     challengeTitle: "",
     challengeCategory: "",
-    challengeImg: "",
+    challengeImgUrl: "",
     challengeHoliday: "",
     challengeStart: "",
     challengeEnd: "",
-    challengeAuthority: "",
+    challengeAuth: "",
+    challengeAuthMethod: "",
     challengeContent: "",
+    challengePassword: "",
   });
 
   const postCreate = async () => {
@@ -22,12 +33,14 @@ function Create() {
       data: {
         challengeTitle: challengeInfo.challengeTitle,
         challengeCategory: challengeInfo.challengeCategory,
-        challengeImg: challengeInfo.challengeImg,
+        challengeImgUrl: challengeInfo.challengeImgUrl,
         challengeHoliday: challengeInfo.challengeHoliday,
         challengeStart: challengeInfo.challengeStart,
         challengeEnd: challengeInfo.challengeEnd,
-        challengeAuthority: challengeInfo.challengeAuthority,
+        challengeAuth: challengeInfo.challengeAuth,
+        challengeAuthMethod: challengeInfo.challengeAuthMethod,
         challengeContent: challengeInfo.challengeContent,
+        challengePassword: challengeInfo.challengePassword,
       },
     });
     console.log(data);
@@ -72,25 +85,71 @@ function Create() {
                   }}
                 >
                   <option value="CATEGORY">주제</option>
-                  <option value="NODRINKNOSMOKE">금연/금주</option>
+                  <option value="NODRINK">금주</option>
+                  <option value="NOSMOKE">금연</option>
                   <option value="EXERCISE">운동</option>
                   <option value="LIVINGHABITS">생활습관</option>
                 </select>
               </div>
             </div>
             <div className={styles.create_img}>
-              <label>대표 이미지 업로드/선택</label>
-              <input
-                type="file"
-                accept="image/*"
-                className={styles.create_css}
-                onChange={(e) => {
-                  setChallengeInfo({
-                    ...challengeInfo,
-                    challengeImg: e.target.value,
-                  });
-                }}
-              />
+              <label>대표 이미지 선택</label>
+              <button className={styles.create_css}>이미지 선택</button>
+              <div className={styles.create_img_box}>
+                <h3>대표 이미지 설정</h3>
+                <ul>
+                  {/* 이미지 하나의 ul안에서 map 돌리기!!! */}
+                  <li>
+                    <img src={categoryImg1} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg2} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg3} alt="" />
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <img src={categoryImg4} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg5} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg6} alt="" />
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <img src={categoryImg7} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg8} alt="" />
+                  </li>
+                  <li>
+                    <img src={categoryImg9} alt="" />
+                  </li>
+                </ul>
+                <button className={styles.create_btn}>
+                  대표 이미지로 설정하기
+                </button>
+              </div>
+              <div>
+                <select
+                  className={`${styles.create_select} ${styles.create_css}`}
+                  onChange={(e) => {
+                    setChallengeInfo({
+                      ...challengeInfo,
+                      challengeImgUrl: e.target.value,
+                    });
+                  }}
+                >
+                  <option value="0"></option>
+                  <option value="1"></option>
+                  <option value="2"></option>
+                </select>
+              </div>
             </div>
           </div>
           <div>
@@ -143,7 +202,7 @@ function Create() {
                   onChange={(e) => {
                     setChallengeInfo({
                       ...challengeInfo,
-                      challengeAuthority: e.target.value,
+                      challengeAuth: e.target.value,
                     });
                   }}
                 >
@@ -153,7 +212,42 @@ function Create() {
                 </select>
               </div>
             </div>
+            <div
+              className={`${styles.private_box} ${
+                challengeInfo.challengeAuth === "PRIVATE"
+                  ? styles.private_box_open
+                  : ""
+              } `}
+            >
+              <h3>챌린지의 비밀번호를 입력해주세요.</h3>
+              <p>비밀번호는 숫자만 입력 가능하며, 길이는 4 ~ 8자 입니다.</p>
+              <input
+                className={styles.create_css}
+                type="number"
+                onChange={(e) => {
+                  setChallengeInfo({
+                    ...challengeInfo,
+                    challengePassword: e.target.value,
+                  });
+                }}
+              />
+              <button className={styles.create_btn}>비밀번호 입력</button>
+            </div>
           </div>
+        </div>
+        <div className={styles.create_bottom}>
+          <label>인증방법</label>
+          <input
+            type="text"
+            placeholder="인증방법을 설명해주세요."
+            className={styles.create_css}
+            onChange={(e) => {
+              setChallengeInfo({
+                ...challengeInfo,
+                challengeAuthMethod: e.target.value,
+              });
+            }}
+          />
         </div>
         <div className={styles.create_bottom}>
           <label>챌린지 설명</label>

@@ -54,8 +54,56 @@ form label {
 }
 
 /* 대표 이미지 css */
-.create_img input {
-  line-height: 44px;
+.create_img .create_css {
+  text-align: left;
+}
+
+.create_img_box {
+  /* display: none; */
+  border: 1px solid #00d994;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.create_img_box h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.create_img_box ul {
+  margin: 0;
+  padding: 0;
+}
+
+.create_img_box ul li {
+  width: 179.3px;
+  height: 130px;
+  overflow: hidden;
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.create_img_box ul li:last-child {
+  margin-right: 0;
+}
+
+.create_img_box img {
+  height: 120%;
+  transition: all 0.5s;
+}
+
+.create_img_box ul li:hover img {
+  transform: scale(1.2);
+}
+
+.create_img_box .create_btn {
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
 /* 주말제외 css */
@@ -79,6 +127,58 @@ form label {
   align-items: center;
 }
 
+/* 비공개 */
+
+.private_box {
+  display: none;
+  border: 1px solid #00d994;
+  border-radius: 5px;
+  padding: 20px;
+  transition: all 0.5s;
+}
+
+.private_box .private_box h3 {
+  margin: 0;
+}
+
+.private_box p {
+  margin: 5px 0 30px 0;
+  color: #aaa;
+}
+
+.private_box input {
+  width: 70%;
+  margin-right: 5%;
+}
+
+.private_box button {
+  margin: 0;
+  width: 25%;
+  height: 40px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.private_box input::-webkit-outer-spin-button,
+.private_box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.private_box_open {
+  display: block;
+  transition: all 0.5s;
+}
+
+/* 인증방식 */
+.create_bottom {
+  margin-bottom: 40px;
+}
+.create_bottom input {
+  width: 100%;
+  height: 40px;
+  padding: 15px;
+}
+
 /* 챌린지 설명 css */
 .create_bottom textarea {
   width: 100%;
@@ -86,7 +186,7 @@ form label {
   padding: 15px;
 }
 
-/* 챌린지 설명 css */
+/* 챌린지 개설 버튼 css */
 .create_btn {
   width: 280px;
   height: 60px;
@@ -97,7 +197,7 @@ form label {
   color: white;
   font-weight: 600;
   transition: all 0.5s;
-  margin: 40px 0 0 1000px;
+  margin-left: 1000px;
   cursor: pointer;
 }
 

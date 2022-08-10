@@ -13,7 +13,7 @@ function PostModal() {
           <Link to={`/`}>
             <button>메인화면 바로가기</button>
           </Link>
-          <Link to={`/`}>
+          <Link to={`/detail`}>
             <button style={{ marginLeft: "20px" }}>상세페이지 바로가기</button>
           </Link>
         </div>
