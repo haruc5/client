@@ -1,8 +1,10 @@
+import styles from "./ChallengeInfo.module.css";
+
 function ChallengeInfo({title, start, end, auth, authMethod, content}){
   return(
-    <div>
+    <div className={styles.info_box}>
       <h4>기본정보</h4> 
-      <ul>
+      <ul className={styles.info_list}>
         <li>
           <p>카테고리</p>
           <p>{title}</p>

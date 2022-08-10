@@ -1,0 +1,18 @@
+.info_box h4{
+  font-size: 18px;
+  margin-top: 50px;
+}
+.info_list{
+  padding: 0;
+}
+.info_list li{
+  list-style: none;
+}
+.info_list li p{
+  display: inline-block;
+  margin: 5px 0;
+}
+.info_list li p:first-child{
+  width: 100px;
+  color: #bbb;
+}
