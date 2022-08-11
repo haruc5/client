@@ -60,17 +60,9 @@ function Create() {
 
   const [modal, setModal] = useState(false);
   const [imgBox, setImgBox] = useState(false);
-  const [imgCheckBox, setImgCheckBox] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [imgCheckBox, setImgCheckBox] = useState(
+    Array(categoryImgs.length).fill(false)
+  );
   const [authPw, setAuthPw] = useState(null);
 
   function showModal() {
@@ -86,9 +78,10 @@ function Create() {
   }
 
   function imgCheck(event) {
-    setImgCheckBox(!imgCheckBox[event.target.alt]);
-    console.log(imgCheckBox.map((img) => img));
-    // setImgCheckBox((imgCheckBox[event.target.alt] = true));
+    const newArr = Array(categoryImgs.length).fill(false);
+    newArr[event.target.alt] = true;
+    setImgCheckBox(newArr);
+    console.log(newArr);
   }
 
   const createPrivate = (e) => {
