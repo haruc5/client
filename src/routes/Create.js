@@ -60,6 +60,17 @@ function Create() {
 
   const [modal, setModal] = useState(false);
   const [imgBox, setImgBox] = useState(false);
+  const [imgCheckBox, setImgCheckBox] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [authPw, setAuthPw] = useState(null);
 
   function showModal() {
@@ -70,36 +81,31 @@ function Create() {
     setImgBox(!imgBox);
   }
 
-  function inputPw(event){
+  function inputPw(event) {
     setAuthPw(event.target.value);
   }
 
-  function imgCheck(event, index){ // 클릭 시 받아오는 index
-    console.log(index);
-    if(event.target.alt == index){
-      
-    }
-
+  function imgCheck(event) {
+    setImgCheckBox(!imgCheckBox[event.target.alt]);
+    console.log(imgCheckBox.map((img) => img));
+    // setImgCheckBox((imgCheckBox[event.target.alt] = true));
   }
-
 
   const createPrivate = (e) => {
     setChallengeInfo({
       ...challengeInfo,
       challengePassword: authPw,
     });
-  }
+  };
 
-  function passAuthPw(){
-    if(authPw.length > 3 && 9 > authPw.length){
+  function passAuthPw() {
+    if (authPw.length > 3 && 9 > authPw.length) {
       createPrivate();
       alert("비밀번호 입력이 완료되었습니다.");
-    } else{
+    } else {
       alert("비밀번호를 4 ~ 8자로 입력해주세요.");
     }
   }
-
-  console.log(challengeInfo.challengeImgUrl);
 
   return (
     <div className={styles.create_container}>
@@ -143,7 +149,11 @@ function Create() {
             </div>
             <div className={styles.create_img}>
               <label>대표 이미지 선택</label>
-              <button className={styles.create_css} onClick={openImgBox} type="button"> 
+              <button
+                className={styles.create_css}
+                onClick={openImgBox}
+                type="button"
+              >
                 이미지 선택
               </button>
               <div
@@ -158,15 +168,21 @@ function Create() {
                       key={index}
                       onClick={imgCheck}
                       className={`${
-                        imgBox === true ? styles.create_box_open : ""
+                        imgCheckBox[index] === true
+                          ? styles.create_box_open
+                          : ""
                       } `}
                     >
-                      <img src={categoryImg} alt={index} onClick={(e) => {
-                        setChallengeInfo({
-                          ...challengeInfo,
-                          challengeImgUrl: e.target.src,
-                        });
-                      }}/>
+                      <img
+                        src={categoryImg}
+                        alt={index}
+                        onClick={(e) => {
+                          setChallengeInfo({
+                            ...challengeInfo,
+                            challengeImgUrl: e.target.src,
+                          });
+                        }}
+                      />
                     </li>
                   ))}
                 </ul>
@@ -247,13 +263,19 @@ function Create() {
               <p>비밀번호는 4 ~ 8자 입력 가능합니다.</p>
               <input
                 className={styles.create_css}
-                type="password" 
-                minLength='4'
-                maxLength='8'
+                type="password"
+                minLength="4"
+                maxLength="8"
                 // value={authPw}
                 onChange={inputPw}
               />
-              <button className={styles.create_btn} onClick={passAuthPw} type="button">비밀번호 입력</button>
+              <button
+                className={styles.create_btn}
+                onClick={passAuthPw}
+                type="button"
+              >
+                비밀번호 입력
+              </button>
             </div>
           </div>
         </div>
