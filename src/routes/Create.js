@@ -113,12 +113,12 @@ function Create() {
             </div>
             <div className={styles.create_img}>
               <label>대표 이미지 선택</label>
-              <button className={styles.create_css} onClick={openImgBox}>
+              <button className={styles.create_css} onClick={openImgBox} type="button"> 
                 이미지 선택
               </button>
               <div
                 className={`${styles.create_img_box} ${
-                  imgBox ? styles.create_box_open : ""
+                  imgBox === true ? styles.create_box_open : ""
                 } `}
               >
                 <h3>대표 이미지 설정</h3>

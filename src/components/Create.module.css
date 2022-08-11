@@ -56,6 +56,7 @@ form label {
 /* 대표 이미지 css */
 .create_img .create_css {
   text-align: left;
+  cursor: pointer;
 }
 
 .create_img_box {
@@ -89,6 +90,7 @@ form label {
   margin-right: 10px;
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
 }
 
 .create_img_box ul li:nth-child(3n) {
@@ -96,12 +98,16 @@ form label {
 }
 
 .create_img_box img {
+  position: absolute;
+  top:50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 120%;
   transition: all 0.5s;
 }
 
 .create_img_box ul li:hover img {
-  transform: scale(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .create_img_box .create_btn {
