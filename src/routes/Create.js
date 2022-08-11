@@ -60,6 +60,7 @@ function Create() {
 
   const [modal, setModal] = useState(false);
   const [imgBox, setImgBox] = useState(false);
+  const [authPw, setAuthPw] = useState(null);
 
   function showModal() {
     setModal(true);
@@ -69,12 +70,41 @@ function Create() {
     setImgBox(!imgBox);
   }
 
-  console.log(imgBox);
+  function inputPw(event){
+    setAuthPw(event.target.value);
+  }
+
+  function imgCheck(event, index){ // 클릭 시 받아오는 index
+    console.log(index);
+    if(event.target.alt == index){
+      
+    }
+
+  }
+
+
+  const createPrivate = (e) => {
+    setChallengeInfo({
+      ...challengeInfo,
+      challengePassword: authPw,
+    });
+  }
+
+  function passAuthPw(){
+    if(authPw.length > 3 && 9 > authPw.length){
+      createPrivate();
+      alert("비밀번호 입력이 완료되었습니다.");
+    } else{
+      alert("비밀번호를 4 ~ 8자로 입력해주세요.");
+    }
+  }
+
+  console.log(challengeInfo.challengeImgUrl);
 
   return (
     <div className={styles.create_container}>
       <h1 className={styles.title}>챌린지 개설</h1>
-      <form>
+      <div className={styles.create_form}>
         <div className={styles.create_box}>
           <div className={styles.create_left}>
             <div>
@@ -126,14 +156,17 @@ function Create() {
                   {categoryImgs.map((categoryImg, index) => (
                     <li
                       key={index}
-                      onChange={(e) => {
+                      onClick={imgCheck}
+                      className={`${
+                        imgBox === true ? styles.create_box_open : ""
+                      } `}
+                    >
+                      <img src={categoryImg} alt={index} onClick={(e) => {
                         setChallengeInfo({
                           ...challengeInfo,
-                          challengeImgUrl: e.target.value,
+                          challengeImgUrl: e.target.src,
                         });
-                      }}
-                    >
-                      <img src={categoryImg} alt="" />
+                      }}/>
                     </li>
                   ))}
                 </ul>
@@ -211,18 +244,16 @@ function Create() {
               } `}
             >
               <h3>챌린지의 비밀번호를 입력해주세요.</h3>
-              <p>비밀번호는 숫자만 입력 가능하며, 길이는 4 ~ 8자 입니다.</p>
+              <p>비밀번호는 4 ~ 8자 입력 가능합니다.</p>
               <input
                 className={styles.create_css}
-                type="number"
-                onChange={(e) => {
-                  setChallengeInfo({
-                    ...challengeInfo,
-                    challengePassword: e.target.value,
-                  });
-                }}
+                type="password" 
+                minLength='4'
+                maxLength='8'
+                // value={authPw}
+                onChange={inputPw}
               />
-              <button className={styles.create_btn}>비밀번호 입력</button>
+              <button className={styles.create_btn} onClick={passAuthPw} type="button">비밀번호 입력</button>
             </div>
           </div>
         </div>
@@ -253,7 +284,7 @@ function Create() {
             }}
           />
         </div>
-      </form>
+      </div>
       <button
         onClick={() => {
           showModal();

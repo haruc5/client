@@ -10,7 +10,7 @@
 }
 
 /* 소제목 css */
-form label {
+.create_form label {
   display: block;
   color: #aaa;
   margin-bottom: 5px;
