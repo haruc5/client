@@ -13,6 +13,7 @@
 .create_form label {
   display: block;
   color: #aaa;
+  /* margin-bottom: 5px; */
   margin-bottom: 5px;
 }
 
