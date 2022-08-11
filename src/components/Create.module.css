@@ -59,10 +59,15 @@ form label {
 }
 
 .create_img_box {
-  /* display: none; */
+  display: none;
   border: 1px solid #00d994;
   border-radius: 5px;
   padding: 20px;
+  margin-top: 40px;
+}
+
+.create_box_open {
+  display: block;
 }
 
 .create_img_box h3 {
@@ -85,7 +90,8 @@ form label {
   border-radius: 5px;
   cursor: pointer;
 }
-.create_img_box ul li:last-child {
+
+.create_img_box ul li:nth-child(3n) {
   margin-right: 0;
 }
 

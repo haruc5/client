@@ -46,11 +46,30 @@ function Create() {
     console.log(data);
   };
 
+  let categoryImgs = [
+    categoryImg1,
+    categoryImg2,
+    categoryImg3,
+    categoryImg4,
+    categoryImg5,
+    categoryImg6,
+    categoryImg7,
+    categoryImg8,
+    categoryImg9,
+  ];
+
   const [modal, setModal] = useState(false);
+  const [imgBox, setImgBox] = useState(false);
 
   function showModal() {
     setModal(true);
   }
+
+  function openImgBox() {
+    setImgBox(!imgBox);
+  }
+
+  console.log(imgBox);
 
   return (
     <div className={styles.create_container}>
@@ -94,61 +113,33 @@ function Create() {
             </div>
             <div className={styles.create_img}>
               <label>대표 이미지 선택</label>
-              <button className={styles.create_css}>이미지 선택</button>
-              <div className={styles.create_img_box}>
+              <button className={styles.create_css} onClick={openImgBox}>
+                이미지 선택
+              </button>
+              <div
+                className={`${styles.create_img_box} ${
+                  imgBox ? styles.create_box_open : ""
+                } `}
+              >
                 <h3>대표 이미지 설정</h3>
                 <ul>
-                  {/* 이미지 하나의 ul안에서 map 돌리기!!! */}
-                  <li>
-                    <img src={categoryImg1} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg2} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg3} alt="" />
-                  </li>
-                </ul>
-                <ul>
-                  <li>
-                    <img src={categoryImg4} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg5} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg6} alt="" />
-                  </li>
-                </ul>
-                <ul>
-                  <li>
-                    <img src={categoryImg7} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg8} alt="" />
-                  </li>
-                  <li>
-                    <img src={categoryImg9} alt="" />
-                  </li>
+                  {categoryImgs.map((categoryImg, index) => (
+                    <li
+                      key={index}
+                      onChange={(e) => {
+                        setChallengeInfo({
+                          ...challengeInfo,
+                          challengeImgUrl: e.target.value,
+                        });
+                      }}
+                    >
+                      <img src={categoryImg} alt="" />
+                    </li>
+                  ))}
                 </ul>
                 <button className={styles.create_btn}>
                   대표 이미지로 설정하기
                 </button>
-              </div>
-              <div>
-                <select
-                  className={`${styles.create_select} ${styles.create_css}`}
-                  onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeImgUrl: e.target.value,
-                    });
-                  }}
-                >
-                  <option value="0"></option>
-                  <option value="1"></option>
-                  <option value="2"></option>
-                </select>
               </div>
             </div>
           </div>
