@@ -63,20 +63,18 @@ function Create() {
   const [imgCheckBox, setImgCheckBox] = useState(
     Array(categoryImgs.length).fill(false)
   );
+  const [imgSave, setImgSave] = useState(null);
   const [authPw, setAuthPw] = useState(null);
 
   function showModal() {
     setModal(true);
   }
 
+  // 대표이미지 열림
   function openImgBox() {
     setImgBox(!imgBox);
   }
-
-  function inputPw(event) {
-    setAuthPw(event.target.value);
-  }
-
+  // 대표이미지 선택
   function imgCheck(event) {
     const newArr = Array(categoryImgs.length).fill(false);
     newArr[event.target.alt] = true;
@@ -84,13 +82,35 @@ function Create() {
     console.log(newArr);
   }
 
-  const createPrivate = (e) => {
+  // 대표이미지 저장
+  function inputImg(event) {
+    setImgSave(event.target.src);
+  }
+
+  // 대표이미지 검사
+  function passImg() {
+    if (challengeInfo.challengeImgUrl != null) {
+      createCategoryImg();
+      alert("이미지 선택이 완료되었습니다.");
+      setImgBox(false);
+    } else {
+      alert("이미지를 선택해주세요.");
+    }
+  }
+
+  const createCategoryImg = (e) => {
     setChallengeInfo({
       ...challengeInfo,
-      challengePassword: authPw,
+      challengeImgUrl: imgSave,
     });
   };
 
+  // 챌린지 비밀번호 입력
+  function inputPw(event) {
+    setAuthPw(event.target.value);
+  }
+
+  // 챌린지 비밀번호 검사
   function passAuthPw() {
     if (authPw.length > 3 && 9 > authPw.length) {
       createPrivate();
@@ -99,6 +119,16 @@ function Create() {
       alert("비밀번호를 4 ~ 8자로 입력해주세요.");
     }
   }
+
+  // 챌린지 비밀번호 저장
+  const createPrivate = (e) => {
+    setChallengeInfo({
+      ...challengeInfo,
+      challengePassword: authPw,
+    });
+  };
+
+  console.log(challengeInfo.challengeImgUrl);
 
   return (
     <div className={styles.create_container}>
@@ -147,7 +177,9 @@ function Create() {
                 onClick={openImgBox}
                 type="button"
               >
-                이미지 선택
+                {challengeInfo.challengeImgUrl === ""
+                  ? "이미지 선택"
+                  : "이미지 선택이 완료되었습니다."}
               </button>
               <div
                 className={`${styles.create_img_box} ${
@@ -161,25 +193,14 @@ function Create() {
                       key={index}
                       onClick={imgCheck}
                       className={`${
-                        imgCheckBox[index] === true
-                          ? styles.create_box_open
-                          : ""
+                        imgCheckBox[index] === true ? styles.select_img : ""
                       } `}
                     >
-                      <img
-                        src={categoryImg}
-                        alt={index}
-                        onClick={(e) => {
-                          setChallengeInfo({
-                            ...challengeInfo,
-                            challengeImgUrl: e.target.src,
-                          });
-                        }}
-                      />
+                      <img src={categoryImg} alt={index} onClick={inputImg} />
                     </li>
                   ))}
                 </ul>
-                <button className={styles.create_btn}>
+                <button className={styles.create_btn} onClick={passImg}>
                   대표 이미지로 설정하기
                 </button>
               </div>
@@ -241,7 +262,11 @@ function Create() {
                 >
                   <option value="CATEGORY">공개여부 설정</option>
                   <option value="PUBLIC">공개</option>
-                  <option value="PRIVATE">비공개</option>
+                  <option value="PRIVATE">
+                    {challengeInfo.challengePassword === ""
+                      ? "비공개"
+                      : "비밀번호 설정이 완료되었습니다."}
+                  </option>
                 </select>
               </div>
             </div>
@@ -259,7 +284,6 @@ function Create() {
                 type="password"
                 minLength="4"
                 maxLength="8"
-                // value={authPw}
                 onChange={inputPw}
               />
               <button
@@ -276,7 +300,7 @@ function Create() {
           <label>인증방법</label>
           <input
             type="text"
-            placeholder="인증방법을 설명해주세요."
+            placeholder="ex) 1km 달리기 챌린지입니다. 어디든 좋으니 가볍게 달리고 인증샷 올려보세요!!!"
             className={styles.create_css}
             onChange={(e) => {
               setChallengeInfo({
