@@ -1,0 +1,41 @@
+.list_box {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+}
+.list_box:nth-child(5n) {
+  margin-right: 0;
+}
+.list_img_box {
+  width: 301px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list_img_box img {
+  height: 100%;
+  transition: all 0.5s;
+}
+
+.list_img_box:hover img {
+  transform: scale(1.2);
+}
+
+.list_box a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  margin: 20px 10px;
+  font-size: 20px;
+}
+.list_box p {
+  margin: 0;
+  color: #aaa;
+  margin: 20px 10px;
+}

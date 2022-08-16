@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import ChallengeList from "../components/ChallengeList";
+import styles from "../components/List.module.css";
 
 function List() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [challengeList, setChallengeList] = useState();
+  const [challengeList, setChallengeList] = useState([]);
 
   const getList = async () => {
     try {
@@ -31,6 +33,22 @@ function List() {
     return <span>Loading...</span>;
   }
 
-  return <div>안녕 나는 리스트!</div>;
+  return (
+    <div>
+      <p className={styles.count}>
+        {challengeList.length}개의 챌린지가 있습니다.
+      </p>
+      {challengeList.map((list) => (
+        <ChallengeList
+          key={list.challengeId}
+          id={list.challengeId}
+          img={list.challengeImgUrl}
+          title={list.challengeTitle}
+          start={list.challengeStart}
+          end={list.challengeEnd}
+        />
+      ))}
+    </div>
+  );
 }
 export default List;
