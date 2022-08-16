@@ -4,6 +4,7 @@ import Main from "./routes/Main";
 import Create from "./routes/Create";
 import Header from "./components/Header";
 import Detail from "./routes/Detail";
+import List from "./routes/List";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/create" element={<Create />} />
             <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/list" element={<List />} />
           </Routes>
         </div>
         <Footer />
