@@ -1,5 +1,6 @@
 .list_box {
   display: inline-block;
+  width: 301px;
   margin-right: 20px;
   margin-top: 20px;
   border: 2px solid #eee;
