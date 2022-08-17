@@ -28,7 +28,7 @@ function Create() {
 
   const postCreate = async () => {
     const data = await axios({
-      url: "http://10.78.101.25:8082/api/challenge/create",
+      url: "http://10.78.101.22:8085/api/challenge/create",
       method: "POST",
       data: {
         challengeTitle: challengeInfo.challengeTitle,

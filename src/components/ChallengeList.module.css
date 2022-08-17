@@ -1,14 +1,10 @@
 .list_box {
   display: inline-block;
   width: 301px;
-  margin-right: 20px;
   margin-top: 20px;
   border: 2px solid #eee;
   border-radius: 10px;
   text-decoration: none;
-}
-.list_box:nth-child(4n + 1) {
-  margin-right: 0;
 }
 .list_img_box {
   width: 297px;
