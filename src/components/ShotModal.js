@@ -22,16 +22,20 @@ function ShotModal({ showModal }) {
     console.log(data);
   };
 
-  const previewEncode = (e) => {
+  const previewPostImg = (e) => {
     encodeFileToBase64(e.target.files[0]);
-  };
-
-  const postImg = (e) => {
     setShotInfo({
       ...shotInfo,
       postingImg: e.target.value,
     });
   };
+
+  // const postImg = (e) => {
+  //   setShotInfo({
+  //     ...shotInfo,
+  //     postingImg: e.target.value,
+  //   });
+  // };
 
   const postContent = (e) => {
     setShotInfo({
@@ -71,9 +75,7 @@ function ShotModal({ showModal }) {
                 type="file"
                 accept="image/*"
                 id="selector_img"
-                onChange={(e) => {
-                  encodeFileToBase64(e.target.files[0]);
-                }}
+                onChange={previewPostImg}
               />
             </div>
             <div
@@ -88,7 +90,7 @@ function ShotModal({ showModal }) {
               onChange={postContent}
             ></textarea>
           </form>
-          <button>인증글 올리기</button>
+          <button onClick={postShotCreate}>인증글 올리기</button>
         </div>
         <img
           src={close}
