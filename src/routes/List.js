@@ -58,6 +58,18 @@ function List() {
     setCategory(newArr);
     console.log(newArr);
   }
+  function dateCheck(event) {
+    const newArr = Array(dateSelect.length).fill(false);
+    newArr[event.target.value] = true;
+    setDate(newArr);
+    console.log(newArr);
+  }
+  function etcCheck(event) {
+    const newArr = Array(etcSelect.length).fill(false);
+    newArr[event.target.value] = true;
+    setEtc(newArr);
+    console.log(newArr);
+  }
 
   const getList = async () => {
     try {
@@ -90,29 +102,31 @@ function List() {
       <div className={styles.select_box}>
         <ul>
           <b>카테고리</b>
-          {categorySelect.map((category, index) => (
+          {categorySelect.map((categoryS, index) => (
             <li
               key={index}
               value={index}
               onClick={categoryCheck}
               className={`${
-                category[index] === true ? styles.select_category : ""
+                category[index] === true ? styles.select_category : styles.non_select_category
               } `}
             >
-              {category.value}
+              {categoryS.value}
             </li>
           ))}
         </ul>
         <ul>
           <b>도전기간</b>
-          {dateSelect.map((date, index) => (
+          {dateSelect.map((dateS, index) => (
             <li
               key={index}
-              // className={`${
-              //   imgCheckBox[index] === true ? styles.select_img : ""
-              // } `}
+              value={index}
+              onClick={dateCheck}
+              className={`${
+                date[index] === true ? styles.select_category : styles.non_select_category
+              } `}
             >
-              {date.value}
+              {dateS.value}
             </li>
           ))}
         </ul>
@@ -121,14 +135,16 @@ function List() {
             <span>기</span>
             <span>타</span>
           </b>
-          {etcSelect.map((etc, index) => (
+          {etcSelect.map((etcS, index) => (
             <li
               key={index}
-              // className={`${
-              //   imgCheckBox[index] === true ? styles.select_img : ""
-              // } `}
+              value={index}
+              onClick={etcCheck}
+              className={`${
+                etc[index] === true ? styles.select_category : styles.non_select_category
+              } `}
             >
-              {etc.value}
+              {etcS.value}
             </li>
           ))}
         </ul>
