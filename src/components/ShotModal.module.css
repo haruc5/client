@@ -1,0 +1,113 @@
+.modal_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200vw;
+  height: 200vh;
+  background: rgba(0, 0, 0, 0.25);
+}
+.modal_inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_inner > div {
+  width: 750px;
+  height: 550px;
+}
+.modal_inner h3 {
+  text-align-last: left;
+  margin: 0 0 20px 0;
+}
+
+.modal_form {
+  position: relative;
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.img_box label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 365px;
+  height: 440px;
+  border: 4px dashed #00d994;
+  border-radius: 10px;
+}
+.img_box label img {
+  width: 80px;
+}
+.img_box label p {
+  color: #444;
+}
+.img_box input {
+  display: none;
+}
+
+.preview_non {
+  display: none;
+}
+.preview {
+  position: absolute;
+  display: block;
+  top: 0;
+  width: 365px;
+  height: 440px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.preview img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 365px;
+}
+
+.modal_form textarea {
+  width: 365px;
+  height: 440px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.modal_box button {
+  width: 750px;
+  height: 50px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #00d994;
+  color: white;
+  font-weight: 600;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.modal_box button:hover {
+  background-color: #00ba82;
+}
+
+.close_btn {
+  position: absolute;
+  width: 20px;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+}
