@@ -74,7 +74,7 @@ function List() {
   const getList = async () => {
     try {
       const data = await (
-        await fetch(`http://10.78.101.22:8085/api/challenge/list`)
+        await fetch(`http://10.78.101.23:8085/api/challenge/list`)
       ).json();
 
       setChallengeList(data);
@@ -108,7 +108,9 @@ function List() {
               value={index}
               onClick={categoryCheck}
               className={`${
-                category[index] === true ? styles.select_category : styles.non_select_category
+                category[index] === true
+                  ? styles.select_category
+                  : styles.non_select_category
               } `}
             >
               {categoryS.value}
@@ -123,7 +125,9 @@ function List() {
               value={index}
               onClick={dateCheck}
               className={`${
-                date[index] === true ? styles.select_category : styles.non_select_category
+                date[index] === true
+                  ? styles.select_category
+                  : styles.non_select_category
               } `}
             >
               {dateS.value}
@@ -141,7 +145,9 @@ function List() {
               value={index}
               onClick={etcCheck}
               className={`${
-                etc[index] === true ? styles.select_category : styles.non_select_category
+                etc[index] === true
+                  ? styles.select_category
+                  : styles.non_select_category
               } `}
             >
               {etcS.value}

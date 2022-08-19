@@ -21,7 +21,7 @@ function Detail() {
   const getDetail = async () => {
     try {
       const data = await (
-        await fetch(`http://10.78.101.22:8085/api/challenge/detail/${id}`)
+        await fetch(`http://10.78.101.23:8085/api/challenge/detail/${id}`)
       ).json();
       // const json = await axios({
       //   url: `http://10.78.101.25:8082/api/challenge/detail/${id}`,
