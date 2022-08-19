@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import close from "../assets/images/icons/close.svg";
 import styles from "./ShotModal.module.css";
 import axios from "axios";
 import camera from "../assets/images/icons/camera.svg";
 
 function ShotModal({ showModal }) {
+  const { id } = useParams();
+
   const [shotInfo, setShotInfo] = useState({
     postingImg: "",
     postingContent: "",
@@ -12,39 +15,17 @@ function ShotModal({ showModal }) {
 
   const postShotCreate = async () => {
     const data = await axios({
-      url: "http://10.78.101.22:8085/api/detail/posting",
+      url: `http://10.78.101.23:8085/api/posting/${id}/create`,
       method: "POST",
       data: {
-        postingImg: shotInfo.postingImg,
-        postingContent: shotInfo.postingContent,
+        challengeId: id,
+        shotInfo,
       },
     });
-    console.log(data);
+    // console.log(data);
   };
 
-  const previewPostImg = (e) => {
-    encodeFileToBase64(e.target.files[0]);
-    setShotInfo({
-      ...shotInfo,
-      postingImg: e.target.value,
-    });
-  };
-
-  // const postImg = (e) => {
-  //   setShotInfo({
-  //     ...shotInfo,
-  //     postingImg: e.target.value,
-  //   });
-  // };
-
-  const postContent = (e) => {
-    setShotInfo({
-      ...shotInfo,
-      postingContent: e.target.value,
-    });
-  };
-
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc, setImageSrc] = useState(null);
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -57,6 +38,22 @@ function ShotModal({ showModal }) {
     });
   };
 
+  const previewPostImg = (e) => {
+    encodeFileToBase64(e.target.files[0]);
+    setShotInfo({
+      ...shotInfo,
+      postingImg: imageSrc,
+    });
+  };
+
+  const postContent = (e) => {
+    setShotInfo({
+      ...shotInfo,
+      postingContent: e.target.value,
+    });
+  };
+
+  console.log(id);
   console.log(shotInfo.postingImg);
   console.log(shotInfo.postingContent);
 
@@ -67,7 +64,7 @@ function ShotModal({ showModal }) {
           <h3>인증</h3>
           <form className={styles.modal_form}>
             <div className={styles.img_box}>
-              <label for="selector_img">
+              <label htmlFor="selector_img">
                 <img src={camera} alt="" />
                 <p>업로드할 사진을 선택해주세요.</p>
               </label>
