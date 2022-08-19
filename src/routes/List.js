@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ChallengeList from "../components/ChallengeList";
 import styles from "../components/List.module.css";
+import axios from "axios";
 
 const categorySelect = [
   {
@@ -54,30 +55,31 @@ function List() {
 
   function categoryCheck(event) {
     const newArr = Array(categorySelect.length).fill(false);
-    newArr[event.target.value] = true;
+    newArr[event.target.value] = !category[event.target.value];
     setCategory(newArr);
     console.log(newArr);
   }
   function dateCheck(event) {
     const newArr = Array(dateSelect.length).fill(false);
-    newArr[event.target.value] = true;
+    newArr[event.target.value] = !date[event.target.value];
     setDate(newArr);
     console.log(newArr);
   }
   function etcCheck(event) {
     const newArr = Array(etcSelect.length).fill(false);
-    newArr[event.target.value] = true;
+    newArr[event.target.value] = !etc[event.target.value];
     setEtc(newArr);
     console.log(newArr);
   }
 
   const getList = async () => {
     try {
-      const data = await (
-        await fetch(`http://10.78.101.23:8085/api/challenge/list`)
-      ).json();
+      const json = await axios({
+        url: `http://10.78.101.23:8085/api/challenge/list`,
+        method: "GET",
+      });
 
-      setChallengeList(data);
+      setChallengeList(json.data);
       setIsLoading(false);
     } catch (e) {
       setError(e);
