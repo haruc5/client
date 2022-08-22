@@ -19,11 +19,16 @@ function ShotModal({ showModal }) {
       method: "POST",
       data: {
         challengeId: id,
-        shotInfo,
+        postingImg: shotInfo.postingImg,
+        postingContent: shotInfo.postingContent,
       },
     });
     // console.log(data);
   };
+
+  useEffect(() => {
+    postShotCreate();
+  }, []);
 
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -52,6 +57,10 @@ function ShotModal({ showModal }) {
       postingContent: e.target.value,
     });
   };
+
+  function passShot() {
+    alert("인증글이 게시되었습니다.");
+  }
 
   console.log(id);
   console.log(shotInfo.postingImg);
@@ -87,7 +96,15 @@ function ShotModal({ showModal }) {
               onChange={postContent}
             ></textarea>
           </form>
-          <button onClick={postShotCreate}>인증글 올리기</button>
+          <button
+            onClick={() => {
+              postShotCreate();
+              passShot();
+              showModal();
+            }}
+          >
+            인증글 올리기
+          </button>
         </div>
         <img
           src={close}
