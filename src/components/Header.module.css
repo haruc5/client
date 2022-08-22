@@ -5,28 +5,51 @@
   border-bottom: 1px solid #eee;
   padding: 0px 20px;
 }
+.header_box div {
+  display: flex;
+  align-items: center;
+}
 
 .header_nav {
   display: flex;
   justify-content: space-between;
-  width: 200px;
   padding: 0;
 }
 
 .header_nav li {
   list-style: none;
   text-align: center;
+  cursor: pointer;
 }
 
-.header_nav li a {
-  text-decoration: none;
-  color: #333;
-}
-
-.header_nav li a img {
+.header_nav li img {
   width: 26px;
 }
 
-.header_nav li a p {
+.header_nav li p {
   margin: 0;
+}
+
+.search_box {
+  margin-right: 20px;
+}
+
+.search_box input {
+  height: 50px;
+  padding: 0 10px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid #ddd;
+  width: 300px;
+}
+
+.search_box button {
+  height: 50px;
+  width: 50px;
+  border: 0;
+  background-color: #888;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
+.search_box img {
+  width: 20px;
 }
