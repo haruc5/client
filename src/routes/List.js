@@ -5,41 +5,54 @@ import axios from "axios";
 
 const categorySelect = [
   {
-    id: 1,
     value: "#금주",
+    challenge_category: "NODRINK",
   },
   {
     value: "#금연",
+    challenge_category: "NOSMOKE",
   },
   {
     value: "#운동",
+    challenge_category: "EXERCISE",
   },
   {
     value: "#생활습관",
+    challenge_category: "LIVINGHABITS",
   },
 ];
 
 const dateSelect = [
   {
     value: "#1주",
+    period: 1,
   },
   {
     value: "#2주",
+    period: 2,
   },
   {
     value: "#3주",
+    period: 3,
   },
   {
     value: "#4주 이상",
+    period: 4,
   },
 ];
 
 const etcSelect = [
   {
     value: "#진행예정",
+    progress: 1,
   },
   {
     value: "#진행중",
+    progress: 2,
+  },
+  {
+    value: "#진행완료",
+    progress: 3,
   },
 ];
 
@@ -53,29 +66,37 @@ function List() {
   const [error, setError] = useState(null);
   const [challengeList, setChallengeList] = useState([]);
 
+  const [searchWord, setSearchWord] = useState("ALL");
+  const [searchCategory, setSearchCategory] = useState("ALL");
+  const [searchPeriod, setSearchPeriod] = useState(0);
+  const [searchProgress, setSearchProgress] = useState(0);
+
   function categoryCheck(event) {
     const newArr = Array(categorySelect.length).fill(false);
     newArr[event.target.value] = !category[event.target.value];
     setCategory(newArr);
+    setSearchCategory(categorySelect[event.target.value].challenge_category);
     console.log(newArr);
   }
   function dateCheck(event) {
     const newArr = Array(dateSelect.length).fill(false);
     newArr[event.target.value] = !date[event.target.value];
     setDate(newArr);
+    setSearchPeriod(dateSelect[event.target.value].period);
     console.log(newArr);
   }
   function etcCheck(event) {
     const newArr = Array(etcSelect.length).fill(false);
     newArr[event.target.value] = !etc[event.target.value];
     setEtc(newArr);
+    setSearchProgress(etcSelect[event.target.value].progress);
     console.log(newArr);
   }
 
   const getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/search/ALL/ALL/0/0/1`,
+        url: `http://10.78.101.23:8085/api/search/ALL/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
         method: "GET",
       });
       setChallengeList(
@@ -90,6 +111,8 @@ function List() {
   useEffect(() => {
     getList();
   }, []);
+
+  console.log(searchCategory);
 
   if (error) {
     return <span>{error.message}</span>;
@@ -155,7 +178,7 @@ function List() {
             </li>
           ))}
         </ul>
-        <button>선택된 조건 검색하기</button>
+        <button onClick={getList}>선택된 조건 검색하기</button>
       </div>
       <p className={styles.count}>
         {challengeList.length}개의 챌린지가 있습니다.
