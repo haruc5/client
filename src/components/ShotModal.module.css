@@ -80,6 +80,8 @@
 }
 
 .modal_form textarea {
+  outline: none;
+  resize: none;
   width: 365px;
   height: 440px;
   border-radius: 10px;

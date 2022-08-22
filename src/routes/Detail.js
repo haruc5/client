@@ -51,7 +51,7 @@ function Detail() {
 
   useEffect(() => {
     getDetail();
-    deleteChallenge();
+    // deleteChallenge();
   }, []);
 
   const [challengeInfo, setChallengeInfo] = useState(true);
@@ -77,7 +77,7 @@ function Detail() {
     <div className={styles.container}>
       <div>
         <div className={styles.banner}>
-          <img src={challengeDetail.challengeImgUrl} alt="" />
+          <img src={challengeDetail.challengeImgUrl} alt="banner" />
           <div className={styles.banner_inner}>
             <h2>{challengeDetail.challengeTitle}</h2>
             <p>참여 8명 | 인증률 99%</p>
