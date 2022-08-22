@@ -35,8 +35,23 @@ function Detail() {
     }
   };
 
+  const deleteChallenge = async () => {
+    try {
+      const json = await axios({
+        url: `http://10.78.101.23:8085/api/challenge/delete/${id}`,
+        method: "DELETE",
+      });
+
+      // setChallengeDetail(json.data);
+      setIsLoading(false);
+    } catch (e) {
+      setError(e);
+    }
+  };
+
   useEffect(() => {
     getDetail();
+    deleteChallenge();
   }, []);
 
   const [challengeInfo, setChallengeInfo] = useState(true);
@@ -122,9 +137,9 @@ function Detail() {
         <Link to={`/modify`}>
           <button className={styles.modify_btn}>챌린지 수정</button>
         </Link>
-        <Link to={`/api/challenge/delete/${id}`}>
-          <button className={styles.delete_btn}>챌린지 삭제</button>
-        </Link>
+        <button className={styles.delete_btn} onClick={deleteChallenge}>
+          챌린지 삭제
+        </button>
       </div>
     </div>
   );
