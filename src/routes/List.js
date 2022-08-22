@@ -75,11 +75,12 @@ function List() {
   const getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/challenge/list`,
+        url: `http://10.78.101.23:8085/api/search/ALL/ALL/0/0/1`,
         method: "GET",
       });
-
-      setChallengeList(json.data);
+      setChallengeList(
+        json.data.challengeList.map((challengeList) => challengeList.challenge)
+      );
       setIsLoading(false);
     } catch (e) {
       setError(e);
@@ -89,8 +90,6 @@ function List() {
   useEffect(() => {
     getList();
   }, []);
-
-  console.log(challengeList);
 
   if (error) {
     return <span>{error.message}</span>;
