@@ -12,6 +12,7 @@ import close from "../assets/images/icons/close.svg";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { searchState } from "../recoil/recoilSearchState";
+import List from "../routes/List";
 
 function Header() {
   const [searchBar, setSearchBar] = useState(false);
@@ -36,7 +37,12 @@ function Header() {
           <div className={styles.search_box}>
             <input type="text" placeholder="Search..." onChange={searchWord} />
             <Link to={`/list`}>
-              <button>
+              <button
+                onClick={() => {
+                  List.getList();
+                  <Link to="/list"></Link>;
+                }}
+              >
                 <img src={searchWhite} alt="" />
               </button>
             </Link>

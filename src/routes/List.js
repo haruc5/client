@@ -78,24 +78,21 @@ function List() {
     newArr[event.target.value] = !category[event.target.value];
     setCategory(newArr);
     setSearchCategory(categorySelect[event.target.value].challenge_category);
-    console.log(newArr);
   }
   function dateCheck(event) {
     const newArr = Array(dateSelect.length).fill(false);
     newArr[event.target.value] = !date[event.target.value];
     setDate(newArr);
     setSearchPeriod(dateSelect[event.target.value].period);
-    console.log(newArr);
   }
   function etcCheck(event) {
     const newArr = Array(etcSelect.length).fill(false);
     newArr[event.target.value] = !etc[event.target.value];
     setEtc(newArr);
     setSearchProgress(etcSelect[event.target.value].progress);
-    console.log(newArr);
   }
 
-  const getList = async () => {
+  let getList = async () => {
     try {
       const json = await axios({
         url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
@@ -108,13 +105,21 @@ function List() {
     } catch (e) {
       setError(e);
     }
+    console.log(
+      "searchWord : ",
+      searchWord,
+      "searchCategory : ",
+      searchCategory,
+      "searchPeriod : ",
+      searchPeriod,
+      "searchProgress : ",
+      searchProgress
+    );
   };
 
   useEffect(() => {
     getList();
   }, []);
-
-  console.log(searchCategory);
 
   if (error) {
     return <span>{error.message}</span>;
@@ -197,13 +202,6 @@ function List() {
           />
         ))}
       </div>
-      <button
-        onClick={() => {
-          console.log("searchWord", searchWord);
-        }}
-      >
-        click
-      </button>
     </div>
   );
 }
