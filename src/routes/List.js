@@ -4,6 +4,7 @@ import styles from "../components/List.module.css";
 import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { searchState } from "../recoil/recoilSearchState";
+import { useLocation } from "react-router-dom";
 
 const categorySelect = [
   {
@@ -59,6 +60,8 @@ const etcSelect = [
 ];
 
 function List() {
+  let location = useLocation();
+  console.log("state", location);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState(
     Array(categorySelect.length).fill(false)
@@ -92,7 +95,7 @@ function List() {
     setSearchProgress(etcSelect[event.target.value].progress);
   }
 
-  let getList = async () => {
+  const getList = async () => {
     try {
       const json = await axios({
         url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
