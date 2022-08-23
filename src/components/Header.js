@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 // images
@@ -9,14 +9,16 @@ import login from "../assets/images/icons/login.svg";
 import myPage from "../assets/images/icons/profile.svg";
 import menu from "../assets/images/icons/menubar.svg";
 import close from "../assets/images/icons/close.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { searchState } from "../recoil/recoilSearchState";
 import List from "../routes/List";
+import axios from "axios";
 
 function Header() {
   const [searchBar, setSearchBar] = useState(false);
   const [searchCon, setSearchCon] = useRecoilState(searchState);
+  let navigate = useNavigate();
 
   const showSearchBar = () => {
     setSearchBar(!searchBar);
@@ -25,6 +27,14 @@ function Header() {
   const searchWord = (e) => {
     setSearchCon(e.target.value);
     console.log(searchCon);
+  };
+
+  const showList = async () => {
+    navigate("/list", {
+      state: {
+        searchCon,
+      },
+    });
   };
 
   return (
@@ -36,16 +46,10 @@ function Header() {
         {searchBar ? (
           <div className={styles.search_box}>
             <input type="text" placeholder="Search..." onChange={searchWord} />
-            <Link to={`/list`}>
-              <button
-                onClick={() => {
-                  List.getList();
-                  <Link to="/list"></Link>;
-                }}
-              >
-                <img src={searchWhite} alt="" />
-              </button>
-            </Link>
+
+            <button onClick={showList}>
+              <img src={searchWhite} alt="" />
+            </button>
           </div>
         ) : (
           ""
