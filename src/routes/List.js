@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ChallengeList from "../components/ChallengeList";
 import styles from "../components/List.module.css";
 import axios from "axios";
+import { useRecoilValue } from "recoil";
+import { searchState } from "../recoil/recoilSearchState";
 
 const categorySelect = [
   {
@@ -66,7 +68,7 @@ function List() {
   const [error, setError] = useState(null);
   const [challengeList, setChallengeList] = useState([]);
 
-  const [searchWord, setSearchWord] = useState("ALL");
+  const searchWord = useRecoilValue(searchState);
   const [searchCategory, setSearchCategory] = useState("ALL");
   const [searchPeriod, setSearchPeriod] = useState(0);
   const [searchProgress, setSearchProgress] = useState(0);
@@ -96,7 +98,7 @@ function List() {
   const getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/search/ALL/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
+        url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
         method: "GET",
       });
       setChallengeList(
@@ -195,6 +197,13 @@ function List() {
           />
         ))}
       </div>
+      <button
+        onClick={() => {
+          console.log("searchWord", searchWord);
+        }}
+      >
+        click
+      </button>
     </div>
   );
 }
