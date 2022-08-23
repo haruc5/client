@@ -10,10 +10,12 @@ import myPage from "../assets/images/icons/profile.svg";
 import menu from "../assets/images/icons/menubar.svg";
 import close from "../assets/images/icons/close.svg";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { searchState } from "../recoil/recoilSearchState";
 
 function Header() {
   const [searchBar, setSearchBar] = useState(false);
-  const [searchCon, setSearchCon] = useState("ALL");
+  const [searchCon, setSearchCon] = useRecoilState(searchState);
 
   const showSearchBar = () => {
     setSearchBar(!searchBar);
