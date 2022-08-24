@@ -128,6 +128,40 @@ function Create() {
     });
   };
 
+  const postCheck = () => {
+    if (challengeInfo.challengeTitle === "") {
+      alert("제목을 입력해주세요.");
+    } else if (
+      challengeInfo.challengeCategory === "" ||
+      challengeInfo.challengeCategory === "CATEGORY"
+    ) {
+      alert("카테고리를 설정해주세요.");
+    } else if (challengeInfo.challengeImgUrl === "") {
+      alert("대표이미지를 설정해주세요.");
+    } else if (challengeInfo.challengeStart === "") {
+      alert("인증시작을 설정해주세요.");
+    } else if (challengeInfo.challengeEnd === "") {
+      alert("인증종료를 설정해주세요.");
+    } else if (
+      challengeInfo.challengeAuth === "" ||
+      challengeInfo.challengeAuth === "CATEGORY"
+    ) {
+      alert("모집방식을 설정해주세요.");
+    } else if (
+      challengeInfo.challengeAuth === "PRIVATE" &&
+      challengeInfo.challengePassword === ""
+    ) {
+      alert("비밀번호를 입력해주세요.");
+    } else if (challengeInfo.challengeAuthMethod === "") {
+      alert("인증방법을 입력해주세요.");
+    } else if (challengeInfo.challengeContent === "") {
+      alert("챌린지 설명을 입력해주세요.");
+    } else {
+      showModal();
+      postCreate();
+    }
+  };
+
   console.log(challengeInfo.challengeImgUrl);
 
   return (
@@ -324,13 +358,7 @@ function Create() {
           />
         </div>
       </div>
-      <button
-        onClick={() => {
-          showModal();
-          postCreate();
-        }}
-        className={styles.create_btn}
-      >
+      <button onClick={postCheck} className={styles.create_btn}>
         챌린지 개설하기
       </button>
       {modal === true ? <PostModal /> : null}
