@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styles from "../components/Challenge.module.css";
 
 function Challenge({ title, img, start, end }) {
