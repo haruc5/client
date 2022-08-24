@@ -1,5 +1,5 @@
 import styles from "../components/Detail.module.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ChallengeInfo from "../components/ChallengeInfo";
 import ChallengeShot from "../components/ChallengeShot";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import axios from "axios";
 import ShotModal from "../components/ShotModal";
 
 function Detail() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [challengeDetail, setChallengeDetail] = useState();
@@ -35,6 +36,10 @@ function Detail() {
     }
   };
 
+  const showList = async () => {
+    navigate(`/list`);
+  };
+
   const deleteChallenge = async () => {
     try {
       const json = await axios({
@@ -44,6 +49,7 @@ function Detail() {
 
       // setChallengeDetail(json.data);
       setIsLoading(false);
+      alert("챌린지가 삭제되었습니다.");
     } catch (e) {
       setError(e);
     }
@@ -137,7 +143,13 @@ function Detail() {
         <Link to={`/modify`}>
           <button className={styles.modify_btn}>챌린지 수정</button>
         </Link>
-        <button className={styles.delete_btn} onClick={deleteChallenge}>
+        <button
+          className={styles.delete_btn}
+          onClick={() => {
+            deleteChallenge();
+            showList();
+          }}
+        >
           챌린지 삭제
         </button>
       </div>
