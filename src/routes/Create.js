@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../components/Create.module.css";
 import PostModal from "../components/PostModal";
@@ -25,6 +25,7 @@ function Create() {
     challengeContent: "",
     challengePassword: "",
   });
+  const [listLength, setListLength] = useState("");
 
   const postCreate = async () => {
     const data = await axios({
@@ -45,6 +46,21 @@ function Create() {
     });
     console.log(data);
   };
+
+  const getList = async () => {
+    const data = await (
+      await fetch(`http://10.78.101.23:8085/api/challenge/list`)
+    ).json();
+    console.log(data);
+    const totalLength = data.length + 1;
+    setListLength(totalLength);
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  console.log(listLength);
 
   let categoryImgs = [
     categoryImg1,
@@ -361,7 +377,7 @@ function Create() {
       <button onClick={postCheck} className={styles.create_btn}>
         챌린지 개설하기
       </button>
-      {modal === true ? <PostModal /> : null}
+      {modal === true ? <PostModal id={listLength} /> : null}
     </div>
   );
 }

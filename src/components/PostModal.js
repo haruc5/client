@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./PostModal.module.css";
 import green from "../assets/images/icons/green.svg";
 
-function PostModal() {
+function PostModal({ id }) {
   return (
     <div className={styles.modal_box}>
       <div className={styles.modal_inner}>
@@ -13,7 +13,7 @@ function PostModal() {
           <Link to={`/`}>
             <button>메인화면 바로가기</button>
           </Link>
-          <Link to={`/detail`}>
+          <Link to={`/detail/${id}`}>
             <button style={{ marginLeft: "20px" }}>상세페이지 바로가기</button>
           </Link>
         </div>
