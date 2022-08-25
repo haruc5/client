@@ -124,6 +124,8 @@ function List() {
   }, []);
 
   const [page, setPage] = useState(1);
+  const limit = 12;
+  const offset = (page - 1) * limit;
 
   const handlePageChange = (page) => {
     setPage(page);
@@ -199,7 +201,7 @@ function List() {
         {challengeList.length}개의 챌린지가 있습니다.
       </p>
       <div className={styles.list_container}>
-        {challengeList.map((list) => (
+        {challengeList.slice(offset, offset + limit).map((list) => (
           <ChallengeList
             key={list.challengeId}
             id={list.challengeId}
@@ -212,11 +214,9 @@ function List() {
       </div>
       <Pagination
         activePage={page}
-        itemsCountPerPage={12}
+        itemsCountPerPage={limit}
         totalItemsCount={challengeList.length}
         pageRangeDisplayed={5}
-        prevPageText={"‹"}
-        nextPageText={"›"}
         onChange={handlePageChange}
       />
     </div>

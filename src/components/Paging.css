@@ -11,40 +11,52 @@ ul {
 
 ul.pagination li {
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #e2e2e2;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  margin: 0 5px;
 }
-
 ul.pagination li:first-child {
-  border-radius: 5px 0 0 5px;
+  background: url("../assets/images/icons/double_left.png") no-repeat center
+    center / 50%;
 }
 
+ul.pagination li:nth-child(2) {
+  background: url("../assets/images/icons/left.svg") no-repeat center center /
+    40%;
+}
 ul.pagination li:last-child {
-  border-radius: 0 5px 5px 0;
+  background: url("../assets/images/icons/double_right.png") no-repeat center
+    center / 50%;
+}
+ul.pagination li:nth-last-child(2) {
+  background: url("../assets/images/icons/right.svg") no-repeat center center /
+    40%;
+}
+ul.pagination li:first-child a,
+ul.pagination li:nth-child(2) a,
+ul.pagination li:last-child a,
+ul.pagination li:nth-last-child(2) a {
+  color: transparent;
 }
 
 ul.pagination li a {
   text-decoration: none;
-  color: #337ab7;
-  font-size: 1rem;
+  color: #333;
+  font-size: 1.2rem;
+  line-height: 50px;
 }
 
 ul.pagination li.active a {
-  color: white;
+  color: #333;
 }
 
 ul.pagination li.active {
-  background-color: #337ab7;
-}
-
-ul.pagination li a:hover,
-ul.pagination li a.active {
-  color: blue;
+  background-color: #eee;
 }
 
 .page-selection {
