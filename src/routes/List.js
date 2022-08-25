@@ -4,6 +4,8 @@ import styles from "../components/List.module.css";
 import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { searchState } from "../recoil/recoilSearchState";
+import Pagination from "react-js-pagination";
+import "../components/Paging.css";
 
 const categorySelect = [
   {
@@ -95,7 +97,7 @@ function List() {
   let getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}/1`,
+        url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}`,
         method: "GET",
       });
       setChallengeList(
@@ -120,6 +122,12 @@ function List() {
   useEffect(() => {
     getList();
   }, []);
+
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
 
   if (error) {
     return <span>{error.message}</span>;
@@ -202,6 +210,15 @@ function List() {
           />
         ))}
       </div>
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={12}
+        totalItemsCount={challengeList.length}
+        pageRangeDisplayed={5}
+        prevPageText={"‹"}
+        nextPageText={"›"}
+        onChange={handlePageChange}
+      />
     </div>
   );
 }
