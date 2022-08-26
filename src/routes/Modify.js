@@ -15,6 +15,7 @@ import { useLocation } from "react-router-dom";
 
 function Modify() {
   const { state } = useLocation();
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [titleValue, setTitleValue] = useState("");
@@ -30,17 +31,9 @@ function Modify() {
 
   const modifyTitle = (e) => {
     setTitleValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeTitle: e.target.value,
-    });
   };
   const modifyCategory = (e) => {
     setCategoryValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeCategory: e.target.value,
-    });
   };
   const modifyImg = (e) => {
     setImgValue(e.target.value);
@@ -50,41 +43,21 @@ function Modify() {
   };
   const modifyStart = (e) => {
     setStartValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeStart: e.target.value,
-    });
   };
   const modifyEnd = (e) => {
     setEndValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeEnd: e.target.value,
-    });
   };
   const modifyAuth = (e) => {
     setAuthValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeAuth: e.target.value,
-    });
   };
   const modifyPassword = (e) => {
     setPasswordValue(e.target.value);
   };
   const modifyAuthMethod = (e) => {
     setAuthMethodValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeAuthMethod: e.target.value,
-    });
   };
   const modifyContent = (e) => {
     setContentValue(e.target.value);
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeContent: e.target.value,
-    });
   };
 
   const challengeGet = async () => {
@@ -123,41 +96,39 @@ function Modify() {
     challengeGet();
   }, []);
 
-  const [challengeInfo, setChallengeInfo] = useState({
-    challengeId: state,
-    challengeTitle: titleValue,
-    challengeCategory: categoryValue,
-    challengeImgUrl: imgValue,
-    challengeHoliday: holidayValue,
-    challengeStart: startValue,
-    challengeEnd: endValue,
-    challengeAuth: authValue,
-    challengeAuthMethod: authMethodValue,
-    challengeContent: contentValue,
-    challengePassword: passwordValue,
-  });
+  // const [challengeInfo, setChallengeInfo] = useState({
+  //   challengeId: state,
+  //   challengeTitle: titleValue,
+  //   challengeCategory: categoryValue,
+  //   challengeImgUrl: imgValue,
+  //   challengeHoliday: holidayValue,
+  //   challengeStart: startValue,
+  //   challengeEnd: endValue,
+  //   challengeAuth: authValue,
+  //   challengeAuthMethod: authMethodValue,
+  //   challengeContent: contentValue,
+  //   challengePassword: passwordValue,
+  // });
 
   const challengeUpdate = async () => {
     const data = await axios({
       url: "http://10.78.101.23:8085/api/challenge/update",
       method: "PUT",
       data: {
-        challengeId: challengeInfo.challengeId,
-        challengeTitle: challengeInfo.challengeTitle,
-        challengeCategory: challengeInfo.challengeCategory,
-        challengeImgUrl: challengeInfo.challengeImgUrl,
-        challengeHoliday: challengeInfo.challengeHoliday,
-        challengeStart: challengeInfo.challengeStart,
-        challengeEnd: challengeInfo.challengeEnd,
-        challengeAuth: challengeInfo.challengeAuth,
-        challengeAuthMethod: challengeInfo.challengeAuthMethod,
-        challengeContent: challengeInfo.challengeContent,
-        challengePassword: challengeInfo.challengePassword,
+        challengeId: state,
+        challengeTitle: titleValue,
+        challengeCategory: categoryValue,
+        challengeImgUrl: imgValue,
+        challengeHoliday: holidayValue,
+        challengeStart: startValue,
+        challengeEnd: endValue,
+        challengeAuth: authValue,
+        challengeAuthMethod: authMethodValue,
+        challengeContent: contentValue,
+        challengePassword: passwordValue,
       },
     });
   };
-
-  console.log(challengeInfo.challengeTitle);
 
   let categoryImgs = [
     categoryImg1,
@@ -202,7 +173,7 @@ function Modify() {
 
   // 대표이미지 검사
   function passImg() {
-    if (challengeInfo.challengeImgUrl != null) {
+    if (imgValue != null) {
       createCategoryImg();
       alert("이미지 선택이 완료되었습니다.");
       setImgBox(false);
@@ -212,10 +183,7 @@ function Modify() {
   }
 
   const createCategoryImg = (e) => {
-    setChallengeInfo({
-      ...challengeInfo,
-      challengeImgUrl: imgSave,
-    });
+    setImgValue(imgSave);
   };
 
   // 챌린지 비밀번호 입력
@@ -235,39 +203,31 @@ function Modify() {
 
   // 챌린지 비밀번호 저장
   const createPrivate = (e) => {
-    setChallengeInfo({
-      ...challengeInfo,
-      challengePassword: authPw,
-    });
+    // setChallengeInfo({
+    //   ...challengeInfo,
+    //   challengePassword: authPw,
+    // });
+    setPasswordValue(authPw);
   };
 
   const postCheck = () => {
-    if (challengeInfo.challengeTitle === "") {
+    if (titleValue === "") {
       alert("제목을 입력해주세요.");
-    } else if (
-      challengeInfo.challengeCategory === "" ||
-      challengeInfo.challengeCategory === "CATEGORY"
-    ) {
+    } else if (categoryValue === "" || categoryValue === "CATEGORY") {
       alert("카테고리를 설정해주세요.");
-    } else if (challengeInfo.challengeImgUrl === "") {
+    } else if (imgValue === "") {
       alert("대표이미지를 설정해주세요.");
-    } else if (challengeInfo.challengeStart === "") {
+    } else if (startValue === "") {
       alert("인증시작을 설정해주세요.");
-    } else if (challengeInfo.challengeEnd === "") {
+    } else if (endValue === "") {
       alert("인증종료를 설정해주세요.");
-    } else if (
-      challengeInfo.challengeAuth === "" ||
-      challengeInfo.challengeAuth === "CATEGORY"
-    ) {
+    } else if (authValue === "" || authValue === "CATEGORY") {
       alert("모집방식을 설정해주세요.");
-    } else if (
-      challengeInfo.challengeAuth === "PRIVATE" &&
-      challengeInfo.challengePassword === ""
-    ) {
+    } else if (authValue === "PRIVATE" && passwordValue === "") {
       alert("비밀번호를 입력해주세요.");
-    } else if (challengeInfo.challengeAuthMethod === "") {
+    } else if (authMethodValue === "") {
       alert("인증방법을 입력해주세요.");
-    } else if (challengeInfo.challengeContent === "") {
+    } else if (contentValue === "") {
       alert("챌린지 설명을 입력해주세요.");
     } else {
       alert("챌린지가 수정되었습니다.");
@@ -318,7 +278,7 @@ function Modify() {
                 onClick={openImgBox}
                 type="button"
               >
-                {challengeInfo.challengeImgUrl === ""
+                {imgValue === ""
                   ? "이미지 선택"
                   : "이미지 선택이 완료되었습니다."}
               </button>
@@ -355,10 +315,11 @@ function Modify() {
                 <input
                   type="checkbox"
                   onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeHoliday: e.target.value,
-                    });
+                    // setChallengeInfo({
+                    //   ...challengeInfo,
+                    //   challengeHoliday: e.target.value,
+                    // });
+                    setAuthValue(authValue);
                   }}
                 />
               </div>
@@ -392,7 +353,7 @@ function Modify() {
                   <option value="CATEGORY">공개여부 설정</option>
                   <option value="PUBLIC">공개</option>
                   <option value="PRIVATE">
-                    {challengeInfo.challengePassword === ""
+                    {passwordValue === ""
                       ? "비공개"
                       : "비밀번호 설정이 완료되었습니다."}
                   </option>
@@ -401,9 +362,7 @@ function Modify() {
             </div>
             <div
               className={`${styles.private_box} ${
-                challengeInfo.challengeAuth === "PRIVATE"
-                  ? styles.private_box_open
-                  : ""
+                authValue === "PRIVATE" ? styles.private_box_open : ""
               } `}
             >
               <h3>챌린지의 비밀번호를 입력해주세요.</h3>
@@ -445,6 +404,13 @@ function Modify() {
       </div>
       <button onClick={postCheck} className={styles.create_btn}>
         챌린지 수정하기
+      </button>
+      <button
+        onClick={() => {
+          console.log(titleValue);
+        }}
+      >
+        click
       </button>
     </div>
   );
