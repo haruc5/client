@@ -16,15 +16,107 @@ import { useLocation } from "react-router-dom";
 function Modify() {
   const { state } = useLocation();
   const [isLoading, setIsLoading] = useState(true);
-  const [challengeData, setChallengeData] = useState();
+
+  const [titleValue, setTitleValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState("");
+  const [imgValue, setImgValue] = useState("");
+  const [holidayValue, setHolidayValue] = useState("");
+  const [startValue, setStartValue] = useState("");
+  const [endValue, setEndValue] = useState("");
+  const [authValue, setAuthValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [authMethodValue, setAuthMethodValue] = useState("");
+  const [contentValue, setContentValue] = useState("");
+
+  const modifyTitle = (e) => {
+    setTitleValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeTitle: e.target.value,
+    });
+  };
+  const modifyCategory = (e) => {
+    setCategoryValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeCategory: e.target.value,
+    });
+  };
+  const modifyImg = (e) => {
+    setImgValue(e.target.value);
+  };
+  const modifyHoliday = (e) => {
+    setHolidayValue(e.target.value);
+  };
+  const modifyStart = (e) => {
+    setStartValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeStart: e.target.value,
+    });
+  };
+  const modifyEnd = (e) => {
+    setEndValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeEnd: e.target.value,
+    });
+  };
+  const modifyAuth = (e) => {
+    setAuthValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeAuth: e.target.value,
+    });
+  };
+  const modifyPassword = (e) => {
+    setPasswordValue(e.target.value);
+  };
+  const modifyAuthMethod = (e) => {
+    setAuthMethodValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeAuthMethod: e.target.value,
+    });
+  };
+  const modifyContent = (e) => {
+    setContentValue(e.target.value);
+    setChallengeInfo({
+      ...challengeInfo,
+      challengeContent: e.target.value,
+    });
+  };
 
   const challengeGet = async () => {
     const json = await axios({
       url: `http://10.78.101.23:8085/api/challenge/detail/${state}`,
       method: "GET",
     });
-    setChallengeData(json.data);
+    const {
+      challengeTitle,
+      challengeCategory,
+      challengeImgUrl,
+      challengeHoliday,
+      challengeStart,
+      challengeEnd,
+      challengeAuth,
+      challengePassword,
+      challengeAuthMethod,
+      challengeContent,
+    } = json.data;
+
+    setTitleValue(challengeTitle);
+    setCategoryValue(challengeCategory);
+    setImgValue(challengeImgUrl);
+    setHolidayValue(challengeHoliday);
+    setStartValue(challengeStart);
+    setEndValue(challengeEnd);
+    setAuthValue(challengeAuth);
+    setPasswordValue(challengePassword);
+    setAuthMethodValue(challengeAuthMethod);
+    setContentValue(challengeContent);
     setIsLoading(false);
+    console.log(json);
   };
 
   useEffect(() => {
@@ -32,23 +124,25 @@ function Modify() {
   }, []);
 
   const [challengeInfo, setChallengeInfo] = useState({
-    challengeTitle: "",
-    challengeCategory: "",
-    challengeImgUrl: "",
-    challengeHoliday: "",
-    challengeStart: "",
-    challengeEnd: "",
-    challengeAuth: "",
-    challengeAuthMethod: "",
-    challengeContent: "",
-    challengePassword: "",
+    challengeId: state,
+    challengeTitle: titleValue,
+    challengeCategory: categoryValue,
+    challengeImgUrl: imgValue,
+    challengeHoliday: holidayValue,
+    challengeStart: startValue,
+    challengeEnd: endValue,
+    challengeAuth: authValue,
+    challengeAuthMethod: authMethodValue,
+    challengeContent: contentValue,
+    challengePassword: passwordValue,
   });
 
   const challengeUpdate = async () => {
     const data = await axios({
-      url: "http://10.78.101.23:8085/api/challenge/create",
+      url: "http://10.78.101.23:8085/api/challenge/update",
       method: "PUT",
       data: {
+        challengeId: challengeInfo.challengeId,
         challengeTitle: challengeInfo.challengeTitle,
         challengeCategory: challengeInfo.challengeCategory,
         challengeImgUrl: challengeInfo.challengeImgUrl,
@@ -62,6 +156,8 @@ function Modify() {
       },
     });
   };
+
+  console.log(challengeInfo.challengeTitle);
 
   let categoryImgs = [
     categoryImg1,
@@ -174,18 +270,10 @@ function Modify() {
     } else if (challengeInfo.challengeContent === "") {
       alert("챌린지 설명을 입력해주세요.");
     } else {
-      // showModal();
+      alert("챌린지가 수정되었습니다.");
       challengeUpdate();
     }
   };
-
-  // const [titleValue, setTitleValue] = useState(challengeData.challengeTitle);
-
-  // const modifyTitle = (e) => {
-  //   setTitleValue(e.target.value);
-  // };
-
-  console.log(challengeData.challengeTitle);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -201,16 +289,10 @@ function Modify() {
               <label>제목</label>
               <input
                 type="text"
-                // value={titleValue}
+                value={titleValue}
                 placeholder="챌린지의 제목을 입력해주세요."
                 className={styles.create_css}
-                // onChange={modifyTitle}
-                // onChange={(e) => {
-                //   setChallengeInfo({
-                //     ...challengeInfo,
-                //     challengeTitle: e.target.value,
-                //   });
-                // }}
+                onChange={modifyTitle}
               />
             </div>
             <div className={styles.select_box}>
@@ -218,12 +300,8 @@ function Modify() {
               <div>
                 <select
                   className={`${styles.create_select} ${styles.create_css}`}
-                  onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeCategory: e.target.value,
-                    });
-                  }}
+                  value={categoryValue}
+                  onChange={modifyCategory}
                 >
                   <option value="CATEGORY">주제</option>
                   <option value="NODRINK">금주</option>
@@ -291,23 +369,15 @@ function Modify() {
                 <input
                   type="date"
                   className={styles.create_css}
-                  onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeStart: e.target.value,
-                    });
-                  }}
+                  value={startValue}
+                  onChange={modifyStart}
                 />
                 <span> ~ </span>
                 <input
                   type="date"
                   className={styles.create_css}
-                  onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeEnd: e.target.value,
-                    });
-                  }}
+                  value={endValue}
+                  onChange={modifyEnd}
                 />
               </div>
             </div>
@@ -316,12 +386,8 @@ function Modify() {
               <div>
                 <select
                   className={`${styles.create_select} ${styles.create_css}`}
-                  onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeAuth: e.target.value,
-                    });
-                  }}
+                  value={authValue}
+                  onChange={modifyAuth}
                 >
                   <option value="CATEGORY">공개여부 설정</option>
                   <option value="PUBLIC">공개</option>
@@ -363,34 +429,23 @@ function Modify() {
           <label>인증방법</label>
           <input
             type="text"
-            placeholder="ex) 1km 달리기 챌린지입니다. 어디든 좋으니 가볍게 달리고 인증샷 올려보세요!!!"
             className={styles.create_css}
-            onChange={(e) => {
-              setChallengeInfo({
-                ...challengeInfo,
-                challengeAuthMethod: e.target.value,
-              });
-            }}
+            value={authMethodValue}
+            onChange={modifyAuthMethod}
           />
         </div>
         <div className={styles.create_bottom}>
           <label>챌린지 설명</label>
           <textarea
-            placeholder="챌린지를 설명해주세요."
             className={styles.create_css}
-            onChange={(e) => {
-              setChallengeInfo({
-                ...challengeInfo,
-                challengeContent: e.target.value,
-              });
-            }}
+            value={contentValue}
+            onChange={modifyContent}
           />
         </div>
       </div>
       <button onClick={postCheck} className={styles.create_btn}>
         챌린지 수정하기
       </button>
-      {/* {modal === true ? <PostModal id={listLength} /> : null} */}
     </div>
   );
 }
