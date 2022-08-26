@@ -72,6 +72,10 @@ function Detail() {
     setChallengeInfo(false);
   };
 
+  const modify = async () => {
+    navigate(`/detail/${id}/modify`, { state: id });
+  };
+
   if (error) {
     return <span>{error.message}</span>;
   }
@@ -140,9 +144,9 @@ function Detail() {
         </button>
         {modal === true ? <ShotModal showModal={showModal} /> : null}
 
-        <Link to={`/modify`}>
-          <button className={styles.modify_btn}>챌린지 수정</button>
-        </Link>
+        <button className={styles.modify_btn} onClick={modify}>
+          챌린지 수정
+        </button>
         <button
           className={styles.delete_btn}
           onClick={() => {
