@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../components/Create.module.css";
-import PostModal from "../components/PostModal";
 import categoryImg1 from "../assets/images/category_img/exercise_1.jpg";
 import categoryImg2 from "../assets/images/category_img/exercise_2.jpg";
 import categoryImg3 from "../assets/images/category_img/livinghabits_1.jpg";
@@ -42,7 +41,6 @@ function Modify() {
     {
       e.target.checked ? setHolidayValue("on") : setHolidayValue("");
     }
-    // setHolidayValue(e.target.value);
   };
   const modifyStart = (e) => {
     setStartValue(e.target.value);
@@ -97,21 +95,8 @@ function Modify() {
 
   useEffect(() => {
     challengeGet();
+    // setImgValue(holidayValue);
   }, []);
-
-  // const [challengeInfo, setChallengeInfo] = useState({
-  //   challengeId: state,
-  //   challengeTitle: titleValue,
-  //   challengeCategory: categoryValue,
-  //   challengeImgUrl: imgValue,
-  //   challengeHoliday: holidayValue,
-  //   challengeStart: startValue,
-  //   challengeEnd: endValue,
-  //   challengeAuth: authValue,
-  //   challengeAuthMethod: authMethodValue,
-  //   challengeContent: contentValue,
-  //   challengePassword: passwordValue,
-  // });
 
   const challengeUpdate = async () => {
     const data = await axios({
@@ -316,9 +301,18 @@ function Modify() {
               <div className={`${styles.holiday} ${styles.create_css}`}>
                 <label>주말 제외</label>
                 {holidayValue == "on" ? (
-                  <input type="checkbox" checked onChange={modifyHoliday} />
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    onChange={modifyHoliday}
+                    value={holidayValue || ""}
+                  />
                 ) : (
-                  <input type="checkbox" onChange={modifyHoliday} />
+                  <input
+                    type="checkbox"
+                    onChange={modifyHoliday}
+                    value={holidayValue || ""}
+                  />
                 )}
               </div>
             </div>

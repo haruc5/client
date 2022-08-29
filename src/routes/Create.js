@@ -49,11 +49,12 @@ function Create() {
 
   const getList = async () => {
     const data = await (
-      await fetch(`http://10.78.101.23:8085/api/challenge/list`)
+      await fetch(`http://10.78.101.23:8085/api/search/ALL/ALL/0/0`)
     ).json();
     console.log(data);
-    const totalLength = data.length + 1;
+    const totalLength = data.challengeList.length + 1;
     setListLength(totalLength);
+    console.log(totalLength);
   };
 
   useEffect(() => {
