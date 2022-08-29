@@ -72,6 +72,31 @@
   margin: 0;
 }
 
+.select_box ul {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.select_box ul li {
+  border-radius: 17px;
+  /* background-color: #eee; */
+  padding: 5px 20px;
+  list-style: none;
+  line-height: 24px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.select_category {
+  background-color: #00d994;
+  color: white;
+}
+.non_select_category {
+  background-color: #eee;
+}
+
 .hot_challenge {
   width: 310px;
   border: 1px solid #ddd;
