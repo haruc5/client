@@ -39,7 +39,10 @@ function Modify() {
     setImgValue(e.target.value);
   };
   const modifyHoliday = (e) => {
-    setHolidayValue(e.target.value);
+    {
+      e.target.checked ? setHolidayValue("on") : setHolidayValue("");
+    }
+    // setHolidayValue(e.target.value);
   };
   const modifyStart = (e) => {
     setStartValue(e.target.value);
@@ -312,16 +315,11 @@ function Modify() {
               <label>인증 기간 중 주말제외 여부</label>
               <div className={`${styles.holiday} ${styles.create_css}`}>
                 <label>주말 제외</label>
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    // setChallengeInfo({
-                    //   ...challengeInfo,
-                    //   challengeHoliday: e.target.value,
-                    // });
-                    setAuthValue(authValue);
-                  }}
-                />
+                {holidayValue == "on" ? (
+                  <input type="checkbox" checked onChange={modifyHoliday} />
+                ) : (
+                  <input type="checkbox" onChange={modifyHoliday} />
+                )}
               </div>
             </div>
             <div className={styles.create_date}>
@@ -408,6 +406,15 @@ function Modify() {
       <button
         onClick={() => {
           console.log(titleValue);
+          console.log(categoryValue);
+          console.log(imgValue);
+          console.log(holidayValue);
+          console.log(startValue);
+          console.log(endValue);
+          console.log(authValue);
+          console.log(authMethodValue);
+          console.log(contentValue);
+          console.log(passwordValue);
         }}
       >
         click
