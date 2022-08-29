@@ -60,8 +60,6 @@ function Create() {
     getList();
   }, []);
 
-  console.log(listLength);
-
   let categoryImgs = [
     categoryImg1,
     categoryImg2,
@@ -178,8 +176,6 @@ function Create() {
     }
   };
 
-  console.log(challengeInfo.challengeImgUrl);
-
   return (
     <div className={styles.create_container}>
       <h1 className={styles.title}>챌린지 개설</h1>
@@ -268,6 +264,7 @@ function Create() {
                       ...challengeInfo,
                       challengeHoliday: e.target.value,
                     });
+                    console.log(challengeInfo.challengeHoliday);
                   }}
                 />
               </div>
