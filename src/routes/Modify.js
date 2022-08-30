@@ -95,7 +95,6 @@ function Modify() {
 
   useEffect(() => {
     challengeGet();
-    // setImgValue(holidayValue);
   }, []);
 
   const challengeUpdate = async () => {
@@ -137,10 +136,6 @@ function Modify() {
   );
   const [imgSave, setImgSave] = useState(null);
   const [authPw, setAuthPw] = useState(null);
-
-  // function showModal() {
-  //   setModal(true);
-  // }
 
   // 대표이미지 열림
   function openImgBox() {
@@ -396,22 +391,6 @@ function Modify() {
       </div>
       <button onClick={postCheck} className={styles.create_btn}>
         챌린지 수정하기
-      </button>
-      <button
-        onClick={() => {
-          console.log(titleValue);
-          console.log(categoryValue);
-          console.log(imgValue);
-          console.log(holidayValue);
-          console.log(startValue);
-          console.log(endValue);
-          console.log(authValue);
-          console.log(authMethodValue);
-          console.log(contentValue);
-          console.log(passwordValue);
-        }}
-      >
-        click
       </button>
     </div>
   );

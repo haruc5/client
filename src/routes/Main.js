@@ -6,85 +6,38 @@ import gray from "../assets/images/icons/gray.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// const challengeData = [
-//   {
-//     categoryName: "운동",
-//     challengeTitle: "주 2회 1만보 걷기",
-//     challengeContent: "안녕하세요",
-//     challengeStartDate: "2021.07.27",
-//     challengeEndDate: "2021.08.10",
-//     challengeHoliday: true,
-//     challengeImgUrl:
-//       "https://d2v80xjmx68n4w.cloudfront.net/gigs/JU2Lp1593392669.jpg",
-//     challengePassword: "1234",
-//   },
-//   {
-//     categoryName: "점심",
-//     challengeTitle: "주 3회 카페",
-//     challengeContent: "커피 맛있어",
-//     challengeStartDate: "2021.06.02",
-//     challengeEndDate: "2021.07.15",
-//     challengeHoliday: true,
-//     challengeImgUrl: "https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E",
-//     challengePassword: "1234",
-//   },
-//   {
-//     categoryName: "잠",
-//     challengeTitle: "6시간 자기",
-//     challengeContent: "잠 좋아요",
-//     challengeStartDate: "2021.08.25",
-//     challengeEndDate: "2021.08.30",
-//     challengeHoliday: false,
-//     challengeImgUrl:
-//       "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg",
-//     challengePassword: "1234",
-//   },
-//   {
-//     categoryName: "약먹기",
-//     challengeTitle: "주 5회 약",
-//     challengeContent: "약약약",
-//     challengeStartDate: "2021.04.27",
-//     challengeEndDate: "2021.05.10",
-//     challengeHoliday: true,
-//     challengeImgUrl: "http://blog.jinbo.net/attach/615/200937431.jpg",
-//     challengePassword: "1234",
-//   },
-// ];
-
 function Main() {
   const categorySelect = [
     {
       value: "#금주",
-      challenge_category: "NODRINK",
+      challenge_name: "nodrink",
     },
     {
       value: "#금연",
-      challenge_category: "NOSMOKE",
+      challenge_name: "nosmoke",
     },
     {
       value: "#운동",
-      challenge_category: "EXERCISE",
+      challenge_name: "exercise",
     },
     {
       value: "#생활습관",
-      challenge_category: "LIVINGHABITS",
+      challenge_name: "livinghabits",
     },
   ];
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [categoryName, setCategoryName] = useState("nodrink");
 
   // 메인 카테고리
-  const [category, setCategory] = useState(
-    Array(categorySelect.length).fill(false)
-  );
-  // const [searchCategory, setSearchCategory] = useState("ALL");
+  const [category, setCategory] = useState(Array(true, false, false, false));
 
-  function categoryCheck(event) {
+  function categoryCheck(e) {
     const newArr = Array(categorySelect.length).fill(false);
-    newArr[event.target.value] = !category[event.target.value];
+    newArr[e.target.value] = !category[e.target.value];
     setCategory(newArr);
-    // setSearchCategory(categorySelect[event.target.value].challenge_category);
+    setCategoryName(categorySelect[e.target.value].challenge_name);
   }
 
   // 메인 핫챌린지
@@ -94,16 +47,18 @@ function Main() {
   const [nodrinkData, setNodrinkData] = useState([]);
   const [nosmokeData, setNosmokeData] = useState([]);
 
-  let getHotList = async () => {
+  console.log("livingData1", livingData);
+
+  let getList = async () => {
     try {
       const json = await axios({
         url: `http://10.78.101.23:8085/api/challenge/main`,
         method: "GET",
       });
-      setExerciseData(json.data.exercise);
-      setLivingData(json.data.livinghabits);
       setNodrinkData(json.data.nodrink);
       setNosmokeData(json.data.nosmoke);
+      setExerciseData(json.data.exercise);
+      setLivingData(json.data.livinghabits);
       setHotChallengeData(json.data.popular);
       setIsLoading(false);
     } catch (e) {
@@ -112,7 +67,7 @@ function Main() {
   };
 
   useEffect(() => {
-    getHotList();
+    getList();
   }, []);
 
   if (error) {
@@ -141,7 +96,9 @@ function Main() {
                 <li
                   key={index}
                   value={index}
-                  onClick={categoryCheck}
+                  onClick={(e) => {
+                    categoryCheck(e);
+                  }}
                   className={`${
                     category[index] === true
                       ? styles.select_category
@@ -153,16 +110,62 @@ function Main() {
               ))}
             </ul>
           </div>
-          {categorySelect[0].value === "#금주" ? (
+          {categoryName === "nodrink" ? (
             <ul className={styles.challenge_list}>
               {nodrinkData.map((challenge, index) => {
                 return (
                   <Challenge
                     key={index}
+                    id={challenge.challengeId}
                     title={challenge.challengeTitle}
                     img={challenge.challengeImgUrl}
-                    start={challenge.challengeStartDate}
-                    end={challenge.challengeEndDate}
+                    start={challenge.challengeStart}
+                    end={challenge.challengeEnd}
+                  />
+                );
+              })}
+            </ul>
+          ) : categoryName === "nosmoke" ? (
+            <ul className={styles.challenge_list}>
+              {nosmokeData.map((challenge, index) => {
+                return (
+                  <Challenge
+                    key={index}
+                    id={challenge.challengeId}
+                    title={challenge.challengeTitle}
+                    img={challenge.challengeImgUrl}
+                    start={challenge.challengeStart}
+                    end={challenge.challengeEnd}
+                  />
+                );
+              })}
+            </ul>
+          ) : categoryName === "exercise" ? (
+            <ul className={styles.challenge_list}>
+              {exerciseData.map((challenge, index) => {
+                return (
+                  <Challenge
+                    key={index}
+                    id={challenge.challengeId}
+                    title={challenge.challengeTitle}
+                    img={challenge.challengeImgUrl}
+                    start={challenge.challengeStart}
+                    end={challenge.challengeEnd}
+                  />
+                );
+              })}
+            </ul>
+          ) : categoryName === "livinghabits" ? (
+            <ul className={styles.challenge_list}>
+              {livingData.map((challenge, index) => {
+                return (
+                  <Challenge
+                    key={index}
+                    id={challenge.challengeId}
+                    title={challenge.challengeTitle}
+                    img={challenge.challengeImgUrl}
+                    start={challenge.challengeStart}
+                    end={challenge.challengeEnd}
                   />
                 );
               })}
