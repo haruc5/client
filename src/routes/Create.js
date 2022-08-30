@@ -44,17 +44,15 @@ function Create() {
         challengePassword: challengeInfo.challengePassword,
       },
     });
-    console.log(data);
+    // console.log(data);
   };
 
   const getList = async () => {
     const data = await (
-      await fetch(`http://10.78.101.23:8085/api/search/ALL/ALL/0/0`)
+      await fetch(`http://10.78.101.23:8085/api/challenge/list/ALL`)
     ).json();
-    console.log(data);
-    const totalLength = data.challengeList.length + 1;
-    setListLength(totalLength);
-    console.log(totalLength);
+    const nextId = data.length + 1;
+    setListLength(nextId);
   };
 
   useEffect(() => {
@@ -94,7 +92,6 @@ function Create() {
     const newArr = Array(categoryImgs.length).fill(false);
     newArr[event.target.alt] = true;
     setImgCheckBox(newArr);
-    console.log(newArr);
   }
 
   // 대표이미지 저장
@@ -380,13 +377,6 @@ function Create() {
         챌린지 개설하기
       </button>
       {modal === true ? <PostModal id={listLength} /> : null}
-      <button
-        onClick={() => {
-          console.log(challengeInfo);
-        }}
-      >
-        전송 예정 데이터 보기!!!
-      </button>
     </div>
   );
 }
