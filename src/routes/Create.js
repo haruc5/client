@@ -261,11 +261,15 @@ function Create() {
                 <input
                   type="checkbox"
                   onChange={(e) => {
-                    setChallengeInfo({
-                      ...challengeInfo,
-                      challengeHoliday: e.target.value,
-                    });
-                    console.log(challengeInfo.challengeHoliday);
+                    e.target.checked === true
+                      ? setChallengeInfo({
+                          ...challengeInfo,
+                          challengeHoliday: e.target.value,
+                        })
+                      : setChallengeInfo({
+                          ...challengeInfo,
+                          challengeHoliday: "",
+                        });
                   }}
                 />
               </div>
@@ -376,6 +380,13 @@ function Create() {
         챌린지 개설하기
       </button>
       {modal === true ? <PostModal id={listLength} /> : null}
+      <button
+        onClick={() => {
+          console.log(challengeInfo);
+        }}
+      >
+        전송 예정 데이터 보기!!!
+      </button>
     </div>
   );
 }
