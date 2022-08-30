@@ -19,7 +19,8 @@ function ShotModal({ showModal }) {
       method: "POST",
       data: {
         challengeId: id,
-        postingImg: imageSrc,
+        // postingImg: imageSrc,
+        postingImg: shotInfo.postingImg,
         postingContent: shotInfo.postingContent,
       },
     });
@@ -45,10 +46,10 @@ function ShotModal({ showModal }) {
 
   const previewPostImg = (e) => {
     encodeFileToBase64(e.target.files[0]);
-    // setShotInfo({
-    //   ...shotInfo,
-    //   postingImg: imageSrc,
-    // });
+    setShotInfo({
+      ...shotInfo,
+      postingImg: e.target.files[0].name,
+    });
   };
 
   const postContent = (e) => {
@@ -64,7 +65,7 @@ function ShotModal({ showModal }) {
 
   console.log(id);
   console.log(shotInfo.postingImg);
-  console.log("imageSrc", imageSrc);
+  // console.log("imageSrc", imageSrc);
   console.log(shotInfo.postingContent);
 
   return (
