@@ -19,18 +19,18 @@ function ShotModal({ showModal }) {
       method: "POST",
       data: {
         challengeId: id,
-        postingImg: shotInfo.postingImg,
+        postingImg: imageSrc,
         postingContent: shotInfo.postingContent,
       },
     });
-    // console.log(data);
+    console.log("data", data);
   };
 
-  useEffect(() => {
-    postShotCreate();
-  }, []);
+  // useEffect(() => {
+  //   postShotCreate();
+  // }, []);
 
-  const [imageSrc, setImageSrc] = useState(null);
+  const [imageSrc, setImageSrc] = useState();
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -45,10 +45,10 @@ function ShotModal({ showModal }) {
 
   const previewPostImg = (e) => {
     encodeFileToBase64(e.target.files[0]);
-    setShotInfo({
-      ...shotInfo,
-      postingImg: imageSrc,
-    });
+    // setShotInfo({
+    //   ...shotInfo,
+    //   postingImg: imageSrc,
+    // });
   };
 
   const postContent = (e) => {
@@ -64,6 +64,7 @@ function ShotModal({ showModal }) {
 
   console.log(id);
   console.log(shotInfo.postingImg);
+  console.log("imageSrc", imageSrc);
   console.log(shotInfo.postingContent);
 
   return (
