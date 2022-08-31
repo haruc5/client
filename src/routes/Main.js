@@ -3,8 +3,13 @@ import Challenge from "../components/Challenge";
 import HotChallenge from "../components/HotChallenge";
 import styles from "../components/Main.module.css";
 import gray from "../assets/images/icons/gray.svg";
+import banner1 from "../assets/images/banner/main_banner_01.jpg";
+import banner2 from "../assets/images/banner/main_banner_02.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Main() {
   const categorySelect = [
@@ -47,8 +52,6 @@ function Main() {
   const [nodrinkData, setNodrinkData] = useState([]);
   const [nosmokeData, setNosmokeData] = useState([]);
 
-  console.log("livingData1", livingData);
-
   let getList = async () => {
     try {
       const json = await axios({
@@ -61,7 +64,6 @@ function Main() {
       setLivingData(json.data.livinghabits);
       setHotChallengeData(json.data.popular);
       setIsLoading(false);
-      console.log(json.data.livinghabits[0].weekTag);
     } catch (e) {
       setError(e);
     }
@@ -70,6 +72,17 @@ function Main() {
   useEffect(() => {
     getList();
   }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   if (error) {
     return <span>{error.message}</span>;
@@ -82,10 +95,14 @@ function Main() {
     <div className={styles.container}>
       <div>
         <div className={styles.banner}>
-          <img
-            src="https://www.stopbook.com/file/event/list_banner_02.jpg"
-            alt=""
-          />
+          <Slider {...settings}>
+            <div>
+              <img src={banner1} alt="" />
+            </div>
+            <div>
+              <img src={banner2} alt="" />
+            </div>
+          </Slider>
         </div>
         <div className={styles.main_challenge}>
           <h2 className={styles.main_title}>
