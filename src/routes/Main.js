@@ -61,6 +61,7 @@ function Main() {
       setLivingData(json.data.livinghabits);
       setHotChallengeData(json.data.popular);
       setIsLoading(false);
+      console.log(json.data.livinghabits[0].weekTag);
     } catch (e) {
       setError(e);
     }
@@ -121,6 +122,7 @@ function Main() {
                     img={challenge.challengeImgUrl}
                     start={challenge.challengeStart}
                     end={challenge.challengeEnd}
+                    tag={challenge.weekTag}
                   />
                 );
               })}
@@ -136,6 +138,7 @@ function Main() {
                     img={challenge.challengeImgUrl}
                     start={challenge.challengeStart}
                     end={challenge.challengeEnd}
+                    tag={challenge.weekTag}
                   />
                 );
               })}
@@ -151,6 +154,7 @@ function Main() {
                     img={challenge.challengeImgUrl}
                     start={challenge.challengeStart}
                     end={challenge.challengeEnd}
+                    tag={challenge.weekTag}
                   />
                 );
               })}
@@ -166,6 +170,7 @@ function Main() {
                     img={challenge.challengeImgUrl}
                     start={challenge.challengeStart}
                     end={challenge.challengeEnd}
+                    tag={challenge.weekTag}
                   />
                 );
               })}
@@ -177,14 +182,11 @@ function Main() {
       </div>
       <div>
         <div className={styles.profile}>
-          <p>
-            로그인해서
-            <br />
-            나에게 맞는 챌린지를
-            <br />
-            찾아보세요.
-          </p>
           <img src={gray} alt="" />
+          <p>
+            하루를 변화시킬 <br />
+            나를 위한 챌린지를 만들어보세요.
+          </p>
         </div>
         <Link to={`/create`}>
           <button className={styles.create_btn}>챌린지 등록하기+</button>
