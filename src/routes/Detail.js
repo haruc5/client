@@ -5,6 +5,7 @@ import ChallengeShot from "../components/ChallengeShot";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ShotModal from "../components/ShotModal";
+import gray from "../assets/images/icons/gray.svg";
 
 function Detail() {
   const navigate = useNavigate();
@@ -90,7 +91,6 @@ function Detail() {
           <img src={challengeDetail.challengeImgUrl} alt="banner" />
           <div className={styles.banner_inner}>
             <h2>{challengeDetail.challengeTitle}</h2>
-            <p>참여 8명 | 인증률 99%</p>
           </div>
         </div>
         <div>
@@ -110,7 +110,7 @@ function Detail() {
           </ul>
           {challengeInfo ? (
             <ChallengeInfo
-              title={challengeDetail.challengeTitle}
+              category={challengeDetail.challengeCategory}
               start={challengeDetail.challengeStart}
               end={challengeDetail.challengeEnd}
               auth={challengeDetail.challengeAuth}
@@ -125,12 +125,11 @@ function Detail() {
       </div>
       <div className={styles.detail_right}>
         <div className={styles.profile}>
+          <img src={gray} alt="" />
           <p>
-            로그인해서
+            건강한 습관을 만들
             <br />
-            나에게 맞는 챌린지를
-            <br />
-            찾아보세요.
+            챌린지에 참여해보세요.
           </p>
         </div>
 

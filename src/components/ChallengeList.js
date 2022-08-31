@@ -7,7 +7,7 @@ function ChallengeList({ id, img, title, start, end }) {
       <div className={styles.list_img_box}>
         <img src={img} alt={title} />
       </div>
-      <h3>{title}</h3>
+      <h3>{title.length > 11 ? `${title.slice(0, 11)}...` : `${title}`}</h3>
       <p>
         <span>{start}</span> ~ <span>{end}</span>
       </p>

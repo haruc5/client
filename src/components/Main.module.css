@@ -11,14 +11,14 @@
   text-align: center;
 }
 
-.profile p {
-  text-align: left;
-  font-size: 20px;
-  margin: 0 0 20px 0;
+.profile img {
+  width: 95px;
 }
 
-.profile img {
-  width: 100px;
+.profile p {
+  text-align: left;
+  font-size: 18px;
+  margin: 20px 0 0 0;
 }
 
 .banner {
@@ -75,7 +75,7 @@
 .select_box ul {
   display: flex;
   justify-content: center;
-  margin: 0 0 20px 0;
+  margin: 0 0 50px 0;
   padding: 0;
 }
 

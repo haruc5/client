@@ -68,10 +68,14 @@
   text-align: center;
 }
 
+.profile img {
+  width: 95px;
+}
+
 .profile p {
   text-align: left;
-  font-size: 20px;
-  margin: 0 0 20px 0;
+  font-size: 18px;
+  margin: 20px 0 0 0;
 }
 
 /* 버튼 */

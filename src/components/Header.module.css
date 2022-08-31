@@ -40,6 +40,7 @@
   border-radius: 10px 0 0 10px;
   border: 1px solid #ddd;
   width: 300px;
+  outline: none;
 }
 
 .search_box button {
