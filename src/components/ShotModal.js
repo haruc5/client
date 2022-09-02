@@ -17,23 +17,38 @@ function ShotModal({ showModal }) {
 
   const postShotCreate = async () => {
     const formData = new FormData();
-    formData.append("postingImg", files.length && files[0].uploadedFile);
-    formData.append("challengeId", id, { type: "application/json" });
-    formData.append("postingContent", shotInfo.postingContent, {
+    formData.append("imageSrc", files.length && files[0].uploadedFile);
+    // formData.append("challengeId", id, { type: "application/json" });
+    // formData.append("postingContent", shotInfo.postingContent, {
+    //   type: "application/json",
+    // });
+
+    const value = {
+      challengeId: id,
+      postingImg: "",
+      postingContent: shotInfo.postingContent,
+    };
+
+    // const blob = new Blob([JSON.stringify(value)], {
+    //   type: "application/json",
+    // });
+
+    const blob = new Blob([JSON.stringify(value)], {
       type: "application/json",
     });
+
+    formData.append("createPostingDto", blob);
 
     console.log("formData : ", formData);
 
     const data = await axios({
       url: `http://10.78.101.23:8085/api/posting/${id}/create`,
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "multipart/form-data",
       },
-      data: {
-        createPostingDto: formData,
-      },
+      data: formData,
     });
     console.log("data : ", data);
 
@@ -86,7 +101,7 @@ function ShotModal({ showModal }) {
       <div className={styles.modal_inner}>
         <div>
           <h3>인증</h3>
-          <form className={styles.modal_form}>
+          <form className={styles.modal_form} encType="multipart/form-data">
             <div className={styles.img_box}>
               <label htmlFor="selector_img">
                 <img src={camera} alt="" />
@@ -97,6 +112,7 @@ function ShotModal({ showModal }) {
                 accept="image/*"
                 id="selector_img"
                 encType="multipart/form-data"
+                multiple="multiple"
                 onChange={(e) => {
                   previewPostImg(e);
                   handleUpload(e);
