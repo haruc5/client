@@ -12,26 +12,72 @@ function ShotModal({ showModal }) {
     postingImg: "",
     postingContent: "",
   });
+  const [imageSrc, setImageSrc] = useState();
+  const [files, setFiles] = useState([]);
 
   const postShotCreate = async () => {
+    const formData = new FormData();
+    formData.append("postingImg", files.length && files[0].uploadedFile);
+    // formData.append("postingContent", shotInfo.postingContent);
+    formData.append("challengeId", id, { type: "application/json" });
+    formData.append("postingContent", shotInfo.postingContent, {
+      type: "application/json",
+    });
+
+    // const idValue = { challengeId: id };
+    // const contentValue = { postingContent: shotInfo.postingContent };
+
+    // const idBlob = new Blob([JSON.stringify(idValue)], {
+    //   type: "application/json",
+    // });
+    // const contentBlob = new Blob([JSON.stringify(contentValue)], {
+    //   type: "application/json",
+    // });
+
+    // formData.append("challengeId", idBlob);
+    // formData.append("postingContent", contentBlob);
+
+    console.log("formData : ", formData);
+
     const data = await axios({
       url: `http://10.78.101.23:8085/api/posting/${id}/create`,
       method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      // data: { createPostingDto: formData },
       data: {
-        challengeId: id,
-        // postingImg: imageSrc,
-        postingImg: shotInfo.postingImg,
-        postingContent: shotInfo.postingContent,
+        createPostingDto: formData,
       },
     });
-    console.log("data", data);
+    console.log("data : ", data);
+
+    // FormData의 console 확인
+    for (let key of formData.keys()) {
+      console.log("FormData key : ", key);
+    }
+    for (let value of formData.values()) {
+      console.log("FormData value : ", value);
+    }
   };
 
-  // useEffect(() => {
-  //   postShotCreate();
-  // }, []);
+  // const postSubmit = () => {
+  //   const formData = new FormData();
+  //   formData.append("postingImg", files.length && files[0].uploadedFile);
+  //   formData.append("postingContent", shotInfo.postingContent);
+  //   formData.append("challengeId", id);
 
-  const [imageSrc, setImageSrc] = useState();
+  //   axios({
+  //     url: `http://10.78.101.23:8085/api/posting/${id}/create`,
+  //     method: "POST",
+  //     data: formData,
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //       Authorization: localStorage.getItem("access_token"),
+  //     },
+  //   });
+  //   console.log("formData : ", formData);
+  // };
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -46,10 +92,16 @@ function ShotModal({ showModal }) {
 
   const previewPostImg = (e) => {
     encodeFileToBase64(e.target.files[0]);
-    setShotInfo({
-      ...shotInfo,
-      postingImg: e.target.files[0].name,
-    });
+    // setShotInfo({
+    //   ...shotInfo,
+    //   postingImg: e.target.files[0].name,
+    // });
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setFiles([...files, { uploadedFile: file }]);
   };
 
   const postContent = (e) => {
@@ -63,10 +115,11 @@ function ShotModal({ showModal }) {
     alert("인증글이 게시되었습니다.");
   }
 
-  console.log(id);
-  console.log(shotInfo.postingImg);
+  // console.log(id);
+  // console.log(shotInfo.postingImg);
   // console.log("imageSrc", imageSrc);
-  console.log(shotInfo.postingContent);
+  console.log("postingImg", files.length && files[0].uploadedFile);
+  console.log("postingContent", shotInfo.postingContent);
 
   return (
     <div className={styles.modal_box}>
@@ -83,7 +136,11 @@ function ShotModal({ showModal }) {
                 type="file"
                 accept="image/*"
                 id="selector_img"
-                onChange={previewPostImg}
+                encType="multipart/form-data"
+                onChange={(e) => {
+                  previewPostImg(e);
+                  handleUpload(e);
+                }}
               />
             </div>
             <div
@@ -99,6 +156,11 @@ function ShotModal({ showModal }) {
             ></textarea>
           </form>
           <button
+            type="button"
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   postSubmit();
+            // }}
             onClick={() => {
               postShotCreate();
               passShot();
