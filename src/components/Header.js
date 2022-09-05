@@ -45,11 +45,22 @@ function Header() {
       <div>
         {searchBar ? (
           <div className={styles.search_box}>
-            <input type="text" placeholder="Search..." onChange={searchWord} />
+            <form
+              onSubmit={() => {
+                searchWord();
+                showList();
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Search..."
+                onChange={searchWord}
+              />
 
-            <button onClick={showList}>
-              <img src={searchWhite} alt="" />
-            </button>
+              <button onClick={showList}>
+                <img src={searchWhite} alt="" />
+              </button>
+            </form>
           </div>
         ) : (
           ""

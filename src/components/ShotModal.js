@@ -18,10 +18,6 @@ function ShotModal({ showModal }) {
   const postShotCreate = async () => {
     const formData = new FormData();
     formData.append("imageSrc", files.length && files[0].uploadedFile);
-    // formData.append("challengeId", id, { type: "application/json" });
-    // formData.append("postingContent", shotInfo.postingContent, {
-    //   type: "application/json",
-    // });
 
     const value = {
       challengeId: id,
@@ -29,17 +25,11 @@ function ShotModal({ showModal }) {
       postingContent: shotInfo.postingContent,
     };
 
-    // const blob = new Blob([JSON.stringify(value)], {
-    //   type: "application/json",
-    // });
-
     const blob = new Blob([JSON.stringify(value)], {
       type: "application/json",
     });
 
     formData.append("createPostingDto", blob);
-
-    console.log("formData : ", formData);
 
     const data = await axios({
       url: `http://10.78.101.23:8085/api/posting/${id}/create`,
@@ -50,15 +40,6 @@ function ShotModal({ showModal }) {
       },
       data: formData,
     });
-    console.log("data : ", data);
-
-    // FormData의 console 확인
-    for (let key of formData.keys()) {
-      console.log("FormData key : ", key);
-    }
-    for (let value of formData.values()) {
-      console.log("FormData value : ", value);
-    }
   };
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -92,9 +73,6 @@ function ShotModal({ showModal }) {
   function passShot() {
     alert("인증글이 게시되었습니다.");
   }
-
-  console.log("postingImg", files.length && files[0].uploadedFile);
-  console.log("postingContent", shotInfo.postingContent);
 
   return (
     <div className={styles.modal_box}>
