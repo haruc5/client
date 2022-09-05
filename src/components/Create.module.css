@@ -1,19 +1,16 @@
-/* 모달 */
 .create_container {
   position: relative;
 }
 
 /* 챌린지 개설 */
 .title {
-  margin: 0;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
 }
 
-/* 소제목 css */
+/* 소제목 공통 css */
 .create_form label {
   display: block;
   color: #aaa;
-  /* margin-bottom: 5px; */
   margin-bottom: 5px;
 }
 
@@ -23,7 +20,6 @@
 }
 .create_box > div {
   width: 600px;
-  /* border: 1px solid #ddd; */
 }
 .create_box > div > div {
   margin-bottom: 40px;
@@ -32,14 +28,14 @@
   margin-right: 80px;
 }
 
-/* input 중복 css */
+/* input 공통 css */
 .create_css {
   width: 100%;
   height: 40px;
-  border: 0px;
-  background: #eee;
-  border-radius: 5px;
   padding: 0 10px;
+  border: 0px;
+  border-radius: 5px;
+  background: #eee;
   outline: none;
 }
 
@@ -59,68 +55,57 @@
   text-align: left;
   cursor: pointer;
 }
-
 .create_img_box {
   display: none;
-  border: 1px solid #00d994;
-  border-radius: 5px;
   padding: 20px;
   margin-top: 40px;
+  border: 1px solid #00d994;
+  border-radius: 5px;
 }
-
 .create_box_open {
   display: block;
 }
-
 .create_img_box h3 {
-  margin: 0;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
-
 .create_img_box ul {
   margin: 0;
   padding: 0;
 }
-
 .create_img_box ul li {
-  width: 179.3px;
+  position: relative;
+  display: inline-block;
+  width: calc(100% / 3 - 7px);
   height: 130px;
+  margin: 0 10px 5px 0;
   overflow: hidden;
   list-style: none;
-  display: inline-block;
-  margin-right: 10px;
   border-radius: 5px;
   cursor: pointer;
-  position: relative;
 }
-
 .create_img_box ul li:nth-child(3n) {
   margin-right: 0;
 }
-
 .create_img_box ul .select_img {
   border: 4px solid #00d994;
 }
-
 .create_img_box img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   height: 120%;
+  transform: translate(-50%, -50%);
   transition: all 0.5s;
 }
-
 .create_img_box ul li:hover img {
   transform: translate(-50%, -50%) scale(1.2);
 }
-
 .create_img_box .create_btn {
-  margin: 0;
   width: 100%;
   height: 40px;
-  font-size: 15px;
+  margin: 0;
   border-radius: 5px;
+  font-size: 15px;
 }
 
 /* 주말제외 css */
@@ -147,39 +132,33 @@
 /* 비공개 */
 .private_box {
   display: none;
+  padding: 20px;
   border: 1px solid #00d994;
   border-radius: 5px;
-  padding: 20px;
   transition: all 0.5s;
 }
-
 .private_box .private_box h3 {
   margin: 0;
 }
-
 .private_box p {
   margin: 5px 0 30px 0;
   color: #aaa;
 }
-
 .private_box input {
   width: 70%;
   margin-right: 5%;
 }
-
 .private_box button {
-  margin: 0;
   width: 25%;
   height: 40px;
-  font-size: 15px;
+  margin: 0;
   border-radius: 5px;
+  font-size: 15px;
 }
-
 .private_box input::-webkit-outer-spin-button,
 .private_box input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-
 .private_box_open {
   display: block;
   transition: all 0.5s;
@@ -206,17 +185,16 @@
 .create_btn {
   width: 280px;
   height: 60px;
-  font-size: 20px;
+  margin-left: 1000px;
   border-radius: 10px;
   border: 0px;
   background-color: #aaa;
+  font-size: 20px;
   color: white;
   font-weight: 600;
   transition: all 0.5s;
-  margin-left: 1000px;
   cursor: pointer;
 }
-
 .create_btn:hover {
   background-color: #00d994;
 }
