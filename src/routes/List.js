@@ -175,7 +175,7 @@ function List() {
             </li>
           ))}
         </ul>
-        <ul>
+        {/* <ul>
           <b>
             <span>기</span>
             <span>타</span>
@@ -194,7 +194,7 @@ function List() {
               {etcS.value}
             </li>
           ))}
-        </ul>
+        </ul> */}
         <button onClick={getList}>선택된 조건 검색하기</button>
       </div>
       <p className={styles.count}>
