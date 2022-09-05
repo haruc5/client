@@ -34,6 +34,11 @@
   margin-right: 20px;
 }
 
+.search_box form {
+  display: flex;
+  align-items: center;
+}
+
 .search_box input {
   height: 50px;
   padding: 0 10px;

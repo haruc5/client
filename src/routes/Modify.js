@@ -224,7 +224,7 @@ function Modify() {
 
   return (
     <div className={styles.create_container}>
-      <h1 className={styles.title}>챌린지 개설</h1>
+      <h1 className={styles.title}>챌린지 수정</h1>
       <div className={styles.create_form}>
         <div className={styles.create_box}>
           <div className={styles.create_left}>

@@ -1,24 +1,94 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import styles from "./ChallengeShot.module.css";
+import Pagination from "react-js-pagination";
+import "../components/Paging.css";
+import PostShowModal from "./PostShowModal";
+
 function ChallengeShot() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [shotList, setShotList] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  function showModal(e) {
+    setModal(true);
+    console.log(e);
+  }
+
+  const { id } = useParams();
+
+  let getList = async () => {
+    try {
+      const json = await axios({
+        url: `http://10.78.101.23:8085/api/posting/list/1/${id}`,
+        method: "GET",
+      });
+      setShotList(json.data.postList);
+      setIsLoading(false);
+    } catch (e) {
+      setError(e);
+    }
+    // console.log(
+    //   "searchWord : ",
+    //   searchWord,
+    //   "searchCategory : ",
+    //   searchCategory,
+    //   "searchPeriod : ",
+    //   searchPeriod,
+    //   "searchProgress : ",
+    //   searchProgress
+    // );
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  const [page, setPage] = useState(1);
+  const limit = 6;
+  const offset = (page - 1) * limit;
+
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
+  if (error) {
+    return <span>{error.message}</span>;
+  }
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  // console.log(shotList.length);
+
   return (
     <div>
-      {/* <ul>
-        {categorySelect.map((categoryS, index) => (
+      <ul className={styles.shotbox}>
+        {shotList.slice(offset, offset + limit).map((showShot, index) => (
           <li
             key={index}
-            value={index}
-            onClick={(e) => {
-              categoryCheck(e);
-            }}
-            className={`${
-              category[index] === true
-                ? styles.select_category
-                : styles.non_select_category
-            } `}
+            // value={index}
+            onClick={showModal}
+            // className={`${
+            //   category[index] === true
+            //     ? styles.select_category
+            //     : styles.non_select_category
+            // } `}
           >
-            {categoryS.value}
+            <img src={showShot.postingImg} alt="" />
           </li>
         ))}
-      </ul> */}
+      </ul>
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={limit}
+        totalItemsCount={shotList.length}
+        pageRangeDisplayed={5}
+        onChange={handlePageChange}
+      />
+      {modal === true ? <PostShowModal id={id} /> : null}
     </div>
   );
 }

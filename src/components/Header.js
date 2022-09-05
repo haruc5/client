@@ -46,7 +46,8 @@ function Header() {
         {searchBar ? (
           <div className={styles.search_box}>
             <form
-              onSubmit={() => {
+              onSubmit={(e) => {
+                e.preventDefault();
                 searchWord();
                 showList();
               }}
