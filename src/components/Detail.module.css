@@ -6,22 +6,20 @@
 /* 챌린지 배너 */
 .banner {
   position: relative;
-  width: 950px;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 300px;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
+  width: 950px;
+  height: 300px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
   color: #fff;
   background-color: #000;
 }
-
 .banner img {
   width: 100%;
   opacity: 0.8;
 }
-
 .banner_inner {
   position: absolute;
   top: 50%;
@@ -29,7 +27,6 @@
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
 .banner_inner h2 {
   font-size: 30px;
 }
@@ -38,15 +35,14 @@
 .challenge_tab {
   padding: 0;
 }
-
 .challenge_tab li {
   display: inline-block;
   width: 150px;
   height: 50px;
+  margin-right: 50px;
   line-height: 50px;
   text-align: center;
   border-bottom: 3px solid #fff;
-  margin-right: 50px;
   cursor: pointer;
 }
 .challenge_tab li.active {
@@ -61,74 +57,63 @@
 /* 프로필 */
 .profile {
   width: 310px;
-  border: 1px solid #ddd;
   padding: 20px;
-  border-radius: 10px;
   margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   text-align: center;
 }
-
 .profile img {
   width: 95px;
 }
-
 .profile p {
   text-align: left;
   font-size: 18px;
   margin: 20px 0 0 0;
 }
 
-/* 버튼 */
+/* 인증하기 btn */
 .detail_btn {
   width: 310px;
   height: 50px;
-  font-size: 20px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border: 0px;
   background-color: #00d994;
+  font-size: 20px;
   color: white;
   font-weight: 600;
   transition: all 0.5s;
-  margin-bottom: 10px;
   cursor: pointer;
 }
-
 .detail_btn:hover {
   background-color: #00ba82;
 }
 
-.modify_btn {
+/* sub btn 공통 css */
+.sub_btn {
   width: 310px;
   height: 35px;
-  font-size: 15px;
   border-radius: 10px;
   border: 0px;
   background-color: #e8e8e8;
-  color: #333;
+  font-size: 15px;
   font-weight: 600;
+  color: #333;
   transition: all 0.5s;
-  margin-bottom: 10px;
   cursor: pointer;
 }
 
+/* 수정하기 btn */
+.modify_btn {
+  margin-bottom: 10px;
+}
 .modify_btn:hover {
   background-color: #88c8ea;
   color: white;
 }
 
-.delete_btn {
-  width: 310px;
-  height: 35px;
-  font-size: 15px;
-  border-radius: 10px;
-  border: 0px;
-  background-color: #e8e8e8;
-  color: #333;
-  font-weight: 600;
-  transition: all 0.5s;
-  cursor: pointer;
-}
-
+/* 삭제하기 btn */
 .delete_btn:hover {
   background-color: #ed8d7d;
   color: white;

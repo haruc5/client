@@ -1,59 +1,48 @@
+/* header */
 .header_box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
-  padding: 0px 20px;
+  padding: 10px 20px;
 }
-.header_box div {
+.header_box > div {
   display: flex;
   align-items: center;
 }
-
 .header_nav {
-  display: flex;
-  justify-content: space-between;
   padding: 0;
-}
-
-.header_nav li {
-  list-style: none;
-  text-align: center;
   cursor: pointer;
 }
-
-.header_nav li img {
+.header_nav img {
   width: 26px;
 }
-
-.header_nav li p {
+.header_nav p {
   margin: 0;
 }
 
+/* 검색 box */
 .search_box {
   margin-right: 20px;
 }
-
 .search_box form {
   display: flex;
   align-items: center;
 }
-
 .search_box input {
+  width: 300px;
   height: 50px;
   padding: 0 10px;
-  border-radius: 10px 0 0 10px;
   border: 1px solid #ddd;
-  width: 300px;
+  border-radius: 10px 0 0 10px;
   outline: none;
 }
-
 .search_box button {
-  height: 50px;
   width: 50px;
+  height: 50px;
   border: 0;
-  background-color: #888;
   border-radius: 0 10px 10px 0;
+  background-color: #888;
   cursor: pointer;
 }
 .search_box img {

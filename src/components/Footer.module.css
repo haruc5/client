@@ -1,17 +1,18 @@
+/* footer */
 .footer_box {
-  width: 100%;
-  border-top: 1px solid #eee;
-  padding: 30px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 30px 20px;
+  border-top: 1px solid #eee;
 }
 .footer_left img {
   width: 250px;
 }
 .footer_left p {
-  font-size: 15px;
   margin-bottom: 0;
+  font-size: 15px;
 }
 .footer_copy {
   font-size: 15px;

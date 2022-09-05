@@ -1,25 +1,26 @@
+/* hot 챌린지 전체 font 설정 */
 a {
   text-decoration: none;
   color: #333;
 }
 
+/* hot 챌린지 */
 .hot_chellenge_box {
-  width: 270px;
   display: flex;
   align-items: center;
+  width: 270px;
   margin-top: 20px;
 }
 
 .hot_chellenge_thumbnails {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-right: 10px;
   display: flex;
   justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
-
 .hot_chellenge_thumbnails img {
   height: 100%;
   transition: all 0.5s;
@@ -28,11 +29,9 @@ a {
 .hot_chellenge_box_info h3 {
   margin: 0 0 10px 0;
 }
-
 .hot_chellenge_box_info p {
   margin: 0;
 }
-
 .hot_chellenge_box:hover .hot_chellenge_thumbnails img {
   transform: scale(1.2);
 }

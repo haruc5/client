@@ -175,26 +175,6 @@ function List() {
             </li>
           ))}
         </ul>
-        {/* <ul>
-          <b>
-            <span>기</span>
-            <span>타</span>
-          </b>
-          {etcSelect.map((etcS, index) => (
-            <li
-              key={index}
-              value={index}
-              onClick={etcCheck}
-              className={`${
-                etc[index] === true
-                  ? styles.select_category
-                  : styles.non_select_category
-              } `}
-            >
-              {etcS.value}
-            </li>
-          ))}
-        </ul> */}
         <button onClick={getList}>선택된 조건 검색하기</button>
       </div>
       <p className={styles.count}>
