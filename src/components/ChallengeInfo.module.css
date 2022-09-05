@@ -1,18 +1,19 @@
-.info_box h4{
-  font-size: 18px;
+/* 챌린지 소개 */
+.info_box h4 {
   margin-top: 50px;
+  font-size: 18px;
 }
-.info_list{
+.info_list {
   padding: 0;
 }
-.info_list li{
+.info_list li {
   list-style: none;
 }
-.info_list li p{
+.info_list li p {
   display: inline-block;
   margin: 5px 0;
 }
-.info_list li p:first-child{
+.info_list li p:first-child {
   width: 100px;
   color: #bbb;
 }

@@ -1,15 +1,18 @@
+/* 하루조각 건강챌린지 list */
 .chellenge_box {
   width: 290px;
   height: 374px;
+  margin-right: 20px;
   list-style: none;
   border: 1px solid #ddd;
   border-radius: 10px;
-  margin-right: 20px;
   overflow: hidden;
 }
 .chellenge_box:last-child {
   margin-right: 0;
 }
+
+/* 하루조각 건강챌린지 list 썸네일 */
 .chellenge_thumbnails {
   display: flex;
   justify-content: center;
@@ -22,23 +25,24 @@
   height: 100%;
   transition: all 0.5s;
 }
+
+/* 하루조각 건강챌린지 list 내용 */
 .chellenge_box_info {
   padding: 20px;
 }
 .chellenge_box_info b {
   padding: 5px 20px;
   border-radius: 15px;
-  font-size: 13px;
   background: #eee;
+  font-size: 13px;
 }
 .chellenge_box_info h3 {
-  font-size: 20px;
   margin: 20px 0 0 0;
+  font-size: 20px;
 }
 .chellenge_box_info p {
-  margin: 0;
+  margin: 10px 0 0 0;
   color: #aaa;
-  margin-top: 10px;
 }
 .chellenge_box:hover .chellenge_thumbnails img {
   transform: scale(1.2);

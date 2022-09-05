@@ -3,66 +3,66 @@
   justify-content: space-between;
 }
 
+/* profile */
 .profile {
-  border: 1px solid #ddd;
   padding: 20px;
+  border: 1px solid #ddd;
   border-radius: 10px;
   margin-bottom: 20px;
   text-align: center;
 }
-
 .profile img {
   width: 95px;
 }
-
 .profile p {
+  margin: 20px 0 0 0;
   text-align: left;
   font-size: 18px;
-  margin: 20px 0 0 0;
 }
 
+/* main banner */
 .banner {
   width: 950px;
-  border-radius: 10px;
-  overflow: hidden;
   height: 300px;
+  overflow: hidden;
   margin-bottom: 20px;
+  border-radius: 10px;
   border: 1px solid #ddd;
 }
-
 .banner img {
   height: 300px;
 }
 
+/* 챌린지 등록하기 btn */
 .create_btn {
   width: 310px;
   height: 60px;
-  font-size: 20px;
   border-radius: 10px;
   border: 0px;
   background-color: #00d994;
+  font-size: 20px;
   color: white;
   font-weight: 600;
   transition: all 0.5s;
   margin-bottom: 20px;
   cursor: pointer;
 }
-
 .create_btn:hover {
   background-color: #00ba82;
 }
 
+/* 하루조각 건강챌린지 list */
 .main_challenge {
   width: 950px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 20px;
 }
 .main_title {
+  margin: 0 0 20px 0;
   text-align: center;
   font-size: 35px;
   color: #00d994;
-  margin: 0 0 20px 0;
 }
 .main_title span {
   color: #333;
@@ -72,24 +72,20 @@
   padding: 0;
   margin: 0;
 }
-
 .select_box ul {
   display: flex;
   justify-content: center;
   margin: 0 0 50px 0;
   padding: 0;
 }
-
 .select_box ul li {
-  border-radius: 17px;
-  /* background-color: #eee; */
+  margin-left: 30px;
   padding: 5px 20px;
+  border-radius: 17px;
   list-style: none;
   line-height: 24px;
-  margin-left: 30px;
   cursor: pointer;
 }
-
 .select_category {
   background-color: #00d994;
   color: white;
@@ -98,13 +94,13 @@
   background-color: #eee;
 }
 
+/* hot 챌린지 */
 .hot_challenge {
   width: 310px;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 20px;
 }
-
 .hot_challenge_list {
   margin: 0;
   padding: 0;
