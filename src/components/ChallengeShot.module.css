@@ -1,19 +1,19 @@
+/* 인증 목록 list */
 .shotbox {
   display: flex;
-  width: 950px;
   flex-wrap: wrap;
+  width: 950px;
 }
 
 .shotbox li {
-  width: calc(100% / 3 - 40px);
-  height: 300px;
-  overflow: hidden;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: calc(100% / 3 - 40px);
+  height: 300px;
+  margin: 0 20px 20px 0;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .shotbox li:nth-child(3n) {

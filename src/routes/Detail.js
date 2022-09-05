@@ -48,7 +48,6 @@ function Detail() {
         method: "DELETE",
       });
 
-      // setChallengeDetail(json.data);
       setIsLoading(false);
       alert("챌린지가 삭제되었습니다.");
     } catch (e) {
@@ -58,7 +57,6 @@ function Detail() {
 
   useEffect(() => {
     getDetail();
-    // deleteChallenge();
   }, []);
 
   const [challengeInfo, setChallengeInfo] = useState(true);
@@ -143,11 +141,14 @@ function Detail() {
         </button>
         {modal === true ? <ShotModal showModal={showModal} /> : null}
 
-        <button className={styles.modify_btn} onClick={modify}>
+        <button
+          className={`${styles.modify_btn} ${styles.sub_btn}`}
+          onClick={modify}
+        >
           챌린지 수정
         </button>
         <button
-          className={styles.delete_btn}
+          className={`${styles.delete_btn} ${styles.sub_btn}`}
           onClick={() => {
             deleteChallenge();
             showList();

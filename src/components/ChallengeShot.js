@@ -31,16 +31,6 @@ function ChallengeShot() {
     } catch (e) {
       setError(e);
     }
-    // console.log(
-    //   "searchWord : ",
-    //   searchWord,
-    //   "searchCategory : ",
-    //   searchCategory,
-    //   "searchPeriod : ",
-    //   searchPeriod,
-    //   "searchProgress : ",
-    //   searchProgress
-    // );
   };
 
   useEffect(() => {
@@ -62,24 +52,15 @@ function ChallengeShot() {
     return <span>Loading...</span>;
   }
 
-  // console.log(shotList.posting_id);
-
   return (
     <div>
       <ul className={styles.shotbox}>
         {shotList.slice(offset, offset + limit).map((showShot, index) => (
           <li
             key={index}
-            // value={index}
             onClick={() => {
               showModal(showShot);
-              // console.log(showShot);
             }}
-            // className={`${
-            //   category[index] === true
-            //     ? styles.select_category
-            //     : styles.non_select_category
-            // } `}
           >
             <img src={showShot.postingImg} alt="" />
           </li>
