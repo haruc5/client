@@ -11,10 +11,11 @@ function ChallengeShot() {
   const [error, setError] = useState(null);
   const [shotList, setShotList] = useState([]);
   const [modal, setModal] = useState(false);
+  const [shot, setShot] = useState(null);
 
-  function showModal(e) {
+  function showModal(showShot) {
     setModal(true);
-    console.log(e);
+    setShot(showShot);
   }
 
   const { id } = useParams();
@@ -61,7 +62,7 @@ function ChallengeShot() {
     return <span>Loading...</span>;
   }
 
-  // console.log(shotList.length);
+  // console.log(shotList.posting_id);
 
   return (
     <div>
@@ -70,7 +71,10 @@ function ChallengeShot() {
           <li
             key={index}
             // value={index}
-            onClick={showModal}
+            onClick={() => {
+              showModal(showShot);
+              // console.log(showShot);
+            }}
             // className={`${
             //   category[index] === true
             //     ? styles.select_category
@@ -88,7 +92,9 @@ function ChallengeShot() {
         pageRangeDisplayed={5}
         onChange={handlePageChange}
       />
-      {modal === true ? <PostShowModal id={id} /> : null}
+      {modal === true ? (
+        <PostShowModal id={id} shot={shot} setmodal={setModal} />
+      ) : null}
     </div>
   );
 }

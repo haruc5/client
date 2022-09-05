@@ -1,22 +1,25 @@
-import { Link } from "react-router-dom";
-import styles from "./PostModal.module.css";
+import styles from "./PostShowModal.module.css";
 import green from "../assets/images/icons/green.svg";
+import close from "../assets/images/icons/close.svg";
 
-function PostShowModal({ id }) {
+function PostShowModal({ shot, setmodal }) {
   return (
     <div className={styles.modal_box}>
       <div className={styles.modal_inner}>
-        <div>
-          <img src={green} alt="" />
-          <h1>챌린지 개설 완료</h1>
-          <p>챌린지가 개설되었습니다.</p>
-          <Link to={`/`}>
-            <button>메인화면 바로가기</button>
-          </Link>
-          <Link to={`/detail/${id}`}>
-            <button style={{ marginLeft: "20px" }}>상세페이지 바로가기</button>
-          </Link>
+        <div className={styles.close_btn}>
+          <img
+            src={close}
+            alt=""
+            onClick={() => {
+              setmodal(false);
+            }}
+          />
         </div>
+        <div className={styles.postingImg}>
+          <img src={shot.postingImg} alt="" />
+        </div>
+        <img src={green} alt="" className={styles.profileImg} />
+        <p>{shot.postingContent}</p>
       </div>
     </div>
   );
