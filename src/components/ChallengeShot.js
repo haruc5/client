@@ -5,6 +5,7 @@ import styles from "./ChallengeShot.module.css";
 import Pagination from "react-js-pagination";
 import "../components/Paging.css";
 import PostShowModal from "./PostShowModal";
+import { URL } from "../utile/URL";
 
 function ChallengeShot() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ function ChallengeShot() {
   let getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/posting/list/1/${id}`,
+        url: `${URL}/api/posting/list/1/${id}`,
         method: "GET",
       });
       setShotList(json.data.postList);

@@ -11,6 +11,7 @@ import categoryImg6 from "../assets/images/category_img/livinghabits_4.jpg";
 import categoryImg7 from "../assets/images/category_img/livinghabits_5.jpg";
 import categoryImg8 from "../assets/images/category_img/nodrink_1.jpg";
 import categoryImg9 from "../assets/images/category_img/nosmoke_1.jpg";
+import { URL } from "../utile/URL";
 
 function Create() {
   const [challengeInfo, setChallengeInfo] = useState({
@@ -29,7 +30,7 @@ function Create() {
 
   const postCreate = async () => {
     const data = await axios({
-      url: "http://10.78.101.23:8085/api/challenge/create",
+      url: `${URL}/api/challenge/create`,
       method: "POST",
       data: {
         challengeTitle: challengeInfo.challengeTitle,
@@ -49,7 +50,7 @@ function Create() {
 
   const getList = async () => {
     const data = await (
-      await fetch(`http://10.78.101.23:8085/api/challenge/list/ALL`)
+      await fetch(`${URL}/api/challenge/list/ALL`)
     ).json();
     const nextId = data.length + 1;
     setListLength(nextId);

@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { searchState } from "../recoil/recoilSearchState";
 import Pagination from "react-js-pagination";
 import "../components/Paging.css";
+import { URL } from "../utile/URL";
 
 const categorySelect = [
   {
@@ -97,7 +98,7 @@ function List() {
   let getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}`,
+        url: `${URL}/api/search/${searchWord}/${searchCategory}/${searchPeriod}/${searchProgress}`,
         method: "GET",
       });
       setChallengeList(

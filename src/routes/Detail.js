@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ShotModal from "../components/ShotModal";
 import gray from "../assets/images/icons/gray.svg";
+import { URL } from "../utile/URL";
 
 function Detail() {
   const navigate = useNavigate();
@@ -23,10 +24,10 @@ function Detail() {
   const getDetail = async () => {
     try {
       // const data = await (
-      //   await fetch(`http://10.78.101.23:8085/api/challenge/detail/${id}`)
+      //   await fetch(`${URL}/api/challenge/detail/${id}`)
       // ).json();
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/challenge/detail/${id}`,
+        url: `${URL}/api/challenge/detail/${id}`,
         method: "GET",
       });
 
@@ -44,7 +45,7 @@ function Detail() {
   const deleteChallenge = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/challenge/delete/${id}`,
+        url: `${URL}/api/challenge/delete/${id}`,
         method: "DELETE",
       });
 

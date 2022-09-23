@@ -10,6 +10,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { URL } from "../utile/URL";
 
 function Main() {
   const categorySelect = [
@@ -55,7 +56,7 @@ function Main() {
   let getList = async () => {
     try {
       const json = await axios({
-        url: `http://10.78.101.23:8085/api/challenge/main`,
+        url: `${URL}/api/challenge/main`,
         method: "GET",
       });
       setNodrinkData(json.data.nodrink);

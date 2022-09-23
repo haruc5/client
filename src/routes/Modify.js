@@ -11,6 +11,7 @@ import categoryImg7 from "../assets/images/category_img/livinghabits_5.jpg";
 import categoryImg8 from "../assets/images/category_img/nodrink_1.jpg";
 import categoryImg9 from "../assets/images/category_img/nosmoke_1.jpg";
 import { useLocation } from "react-router-dom";
+import { URL } from "../utile/URL";
 
 function Modify() {
   const { state } = useLocation();
@@ -63,7 +64,7 @@ function Modify() {
 
   const challengeGet = async () => {
     const json = await axios({
-      url: `http://10.78.101.23:8085/api/challenge/detail/${state}`,
+      url: `${URL}/api/challenge/detail/${state}`,
       method: "GET",
     });
     const {
@@ -99,7 +100,7 @@ function Modify() {
 
   const challengeUpdate = async () => {
     const data = await axios({
-      url: "http://10.78.101.23:8085/api/challenge/update",
+      url: `${URL}/api/challenge/update`,
       method: "PUT",
       data: {
         challengeId: state,
