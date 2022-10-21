@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import close from "../assets/images/icons/close.svg";
 import styles from "./ShotModal.module.css";
 import axios from "axios";
 import camera from "../assets/images/icons/camera.svg";
+import { URL } from "../utile/URL";
 
 function ShotModal({ showModal }) {
   const { id } = useParams();
@@ -32,7 +33,7 @@ function ShotModal({ showModal }) {
     formData.append("createPostingDto", blob);
 
     const data = await axios({
-      url: `http://10.78.101.23:8085/api/posting/${id}/create`,
+      url: `${URL}:8085/api/posting/${id}/create`,
       method: "POST",
       mode: "cors",
       headers: {
