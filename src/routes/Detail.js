@@ -1,5 +1,5 @@
 import styles from "../components/Detail.module.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ChallengeInfo from "../components/ChallengeInfo";
 import ChallengeShot from "../components/ChallengeShot";
 import { useEffect, useState } from "react";
