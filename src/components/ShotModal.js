@@ -33,7 +33,7 @@ function ShotModal({ showModal }) {
     formData.append("createPostingDto", blob);
 
     const data = await axios({
-      url: `${URL}:8085/api/posting/${id}/create`,
+      url: `${URL}/api/posting/${id}/create`,
       method: "POST",
       mode: "cors",
       headers: {
